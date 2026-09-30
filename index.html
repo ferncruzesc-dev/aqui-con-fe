@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>aQui con fe | Scholarship. Faith. Presence. Art. Community.</title>
+
+  <meta
+    name="description"
+    content="aQui con fe is a living space for scholarship, faith, music, literature, history, social art, and community."
+  >
+
+  <style>
+    :root {
+      --paper: #f4efe6;
+      --paper-dark: #e8dfd0;
+      --ink: #25211d;
+      --muted: #70675d;
+      --brown: #765443;
+      --brown-dark: #523a2f;
+      --gold: #b39362;
+      --line: #d5c9b8;
+      --white: #fffdf8;
+      --shadow: 0 18px 45px rgba(54, 42, 31, 0.10);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    /* -------------------------
+       ACCESSIBILITY
+    ------------------------- */
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      background: var(--brown-dark);
+      color: white;
+      padding: 10px 16px;
+      z-index: 9999;
+    }
+
+    .skip-link:focus {
+      left: 10px;
+    }
+
+    /* -------------------------
+       HEADER
+    ------------------------- */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(244, 239, 230, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.55rem;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--brown);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+      font-size: 0.86rem;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 8px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--brown);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 8px 11px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* -------------------------
+       HERO
+    ------------------------- */
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      right: -170px;
+      top: -150px;
+      border-radius: 50%;
+      background: rgba(179, 147, 98, 0.12);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 380px;
+      height: 380px;
+      left: -180px;
+      bottom: -180px;
+      border-radius: 50%;
+      background: rgba(118, 84, 67, 0.08);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      color: var(--brown);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+      font-weight: 600;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      font-weight: 400;
+      line-height: 0.88;
+      letter-spacing: -0.055em;
+      margin-bottom: 30px;
+    }
+
+    .hero h1 span {
+      color: var(--brown);
+      font-style: italic;
+    }
+
+    .hero-tagline {
+      font-family: var(--serif);
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      line-height: 1.35;
+      max-width: 720px;
+      margin-bottom: 25px;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 1.02rem;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border: 1px solid var(--brown);
+      transition: all 0.25s ease;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+    }
+
+    .button.primary {
+      background: var(--brown);
+      color: white;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(54, 42, 31, 0.12);
+    }
+
+    .button.secondary {
+      background: transparent;
+    }
+
+    /* -------------------------
+       GENERAL SECTIONS
+    ------------------------- */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 55px;
+    }
+
+    .section-number {
+      color: var(--gold);
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+    }
+
+    /* -------------------------
+       ABOUT
+    ------------------------- */
+
+    .about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-quote {
+      font-family: var(--serif);
+      font-size: 2rem;
+      line-height: 1.3;
+      border-left: 2px solid var(--gold);
+      padding-left: 25px;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+
+    .about-text strong {
+      color: var(--ink);
+    }
+
+    /* -------------------------
+       PILLARS
+    ------------------------- */
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .pillar {
+      padding: 35px 25px;
+      border-right: 1px solid var(--line);
+    }
+
+    .pillar:last-child {
+      border-right: none;
+    }
+
+    .pillar-number {
+      font-family: var(--serif);
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .pillar h3 {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+
+    .pillar p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* -------------------------
+       CARDS
+    ------------------------- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 30px;
+      min-height: 240px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-label {
+      display: inline-block;
+      color: var(--brown);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .card h3 {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 22px;
+      color: var(--brown);
+      font-size: 0.84rem;
+    }
+
+    /* -------------------------
+       SCHOLARSHIP
+    ------------------------- */
+
+    .scholarship {
+      background: var(--paper-dark);
+    }
+
+    /* -------------------------
+       PROJECTS
+    ------------------------- */
+
+    .project-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card.featured {
+      background: var(--brown-dark);
+      color: white;
+      border-color: var(--brown-dark);
+    }
+
+    .project-card.featured .card-label,
+    .project-card.featured .card-link {
+      color: #ddc79e;
+    }
+
+    .project-card.featured p {
+      color: rgba(255,255,255,0.76);
+    }
+
+    /* -------------------------
+       ARCHIVE
+    ------------------------- */
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .archive-item {
+      min-height: 170px;
+      padding: 25px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .archive-item h3 {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+
+    .archive-item p {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    /* -------------------------
+       JOURNAL
+    ------------------------- */
+
+    .journal {
+      background: var(--white);
+    }
+
+    .journal-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .journal-entry {
+      display: grid;
+      grid-template-columns: 120px 1fr 100px;
+      gap: 25px;
+      padding: 25px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+    }
+
+    .journal-date {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    .journal-entry h3 {
+      font-family: var(--serif);
+      font-size: 1.45rem;
+      font-weight: 400;
+    }
+
+    .journal-type {
+      color: var(--brown);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: right;
+    }
+
+    /* -------------------------
+       FUTURE HUBS
+    ------------------------- */
+
+    .future {
+      background: var(--brown-dark);
+      color: white;
+    }
+
+    .future .section-number {
+      color: #d8bd88;
+    }
+
+    .future .section-intro {
+      color: rgba(255,255,255,0.72);
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .future-item {
+      padding: 25px;
+      min-height: 160px;
+      background: var(--brown-dark);
+    }
+
+    .future-item h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+
+    .future-item p {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.8rem;
+    }
+
+    /* -------------------------
+       PARTICIPATE
+    ------------------------- */
+
+    .participate {
+      text-align: center;
+    }
+
+    .participate-inner {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .participate p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    /* -------------------------
+       FOOTER
+    ------------------------- */
+
+    footer {
+      background: #211d19;
+      color: white;
+      padding: 55px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 45px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .footer-logo {
+      font-family: var(--serif);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      color: rgba(255,255,255,0.6);
+      max-width: 350px;
+    }
+
+    footer h4 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 7px;
+    }
+
+    footer a {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .copyright {
+      padding-top: 25px;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    /* -------------------------
+       RESPONSIVE
+    ------------------------- */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 12px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .pillars {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pillar:nth-child(2) {
+        border-right: none;
+      }
+
+      .pillar:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .archive-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .future-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        position: relative;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        padding: 20px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 80px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(3.7rem, 18vw, 6rem);
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pillars {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .pillar:last-child {
+        border-bottom: none;
+      }
+
+      .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .journal-entry {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .journal-type {
+        text-align: left;
+      }
+
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .copyright {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header>
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        aQui <span>con fe</span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#scholarship">Scholarship</a></li>
+          <li><a href="#faith">Faith</a></li>
+          <li><a href="#arts">Arts</a></li>
+          <li><a href="#archive">Archive</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#participate">Participate</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main id="main">
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+      <div class="container hero-content">
+
+        <div class="eyebrow">
+          Scholarship · Faith · Presence · Art · Community
+        </div>
+
+        <h1>
+          aQui<br>
+          <span>con fe</span>
+        </h1>
+
+        <p class="hero-tagline">
+          A living space for scholarship, faith, music, literature,
+          history, and the social arts.
+        </p>
+
+        <p class="hero-description">
+          Grounded in presence rather than status, aQui con fe brings
+          together ideas, stories, creative work, research, memory,
+          music, and community.
+        </p>
+
+        <div class="buttons">
+          <a href="#archive" class="button primary">
+            Explore the Archive
+          </a>
+
+          <a href="#journal" class="button secondary">
+            Enter the Journal
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="about" id="about">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">01 — About</div>
+
+          <h2>
+            Here, with faith.
+          </h2>
+
+          <p class="section-intro">
+            aQui con fe is a place for thinking, making, remembering,
+            questioning, creating, and being present.
+          </p>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-quote">
+            “Ideas do not have to choose between intellect and spirit,
+            history and art, research and story.”
+          </div>
+
+          <div class="about-text">
+
+            <p>
+              <strong>aQui</strong> means “here.”
+              <strong>Con fe</strong> means “with faith.”
+            </p>
+
+            <p>
+              Together, aQui con fe names a commitment to being
+              present — with curiosity, with memory, with one another,
+              and with the questions that shape our lives.
+            </p>
+
+            <p>
+              This space is rooted in scholarship and creative practice,
+              while making room for faith in its many traditions and
+              expressions.
+            </p>
+
+            <p>
+              It is also a space for the social arts: the stories,
+              photographs, songs, poems, histories, archives, essays,
+              performances, conversations, and everyday forms of
+              knowledge through which communities understand themselves.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOUR PILLARS
+    ========================== -->
+
+    <section id="pillars">
+
+      <div class="container">
+
+        <div class="pillars">
+
+          <article class="pillar">
+            <div class="pillar-number">I</div>
+            <h3>Scholarship</h3>
+            <p>
+              Research, essays, literature, history, education,
+              law, culture, archives, and community knowledge.
+            </p>
+          </article>
+
+          <article class="pillar">
+            <div class="pillar-number">II</div>
+            <h3>Faith</h3>
+            <p>
+              Reflections on belief, belonging, spiritual practice,
+              justice, questions, and faith across traditions.
+            </p>
+          </article>
+
+          <article class="pillar">
+            <div class="pillar-number">III</div>
+            <h3>Arts</h3>
+            <p>
+              Music, literature, poetry, photography, film,
+              visual art, performance, and storytelling.
+            </p>
+          </article>
+
+          <article class="pillar">
+            <div class="pillar-number">IV</div>
+            <h3>Community</h3>
+            <p>
+              Presence over status. Stories, resources,
+              conversations, collaborations, and shared knowledge.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SCHOLARSHIP
+    ========================== -->
+
+    <section class="scholarship" id="scholarship">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">02 — Scholarship</div>
+
+          <h2>
+            Knowledge as a form of presence.
+          </h2>
+
+          <p class="section-intro">
+            Scholarship can live inside classrooms, libraries,
+            archives, communities, families, stories, and lived
+            experience.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <span class="card-label">Research</span>
+            <h3>Literature & Criticism</h3>
+            <p>
+              Essays, literary criticism, close readings,
+              intertextuality, narrative, and cultural analysis.
+            </p>
+            <a href="#" class="card-link">Coming soon →</a>
+          </article>
+
+          <article class="card">
+            <span class="card-label">History</span>
+            <h3>Memory & Archives</h3>
+            <p>
+              Archives, testimony, migration, memory,
+              institutional records, and histories from below.
+            </p>
+            <a href="#" class="card-link">Coming soon →</a>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Society</span>
+            <h3>Law, Education & Culture</h3>
+            <p>
+              The institutions and systems that shape how people
+              move through the world.
+            </p>
+            <a href="#" class="card-link">Coming soon →</a>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FAITH
+    ========================== -->
+
+    <section id="faith">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">03 — Faith</div>
+
+          <h2>
+            Faith without narrowing the conversation.
+          </h2>
+
+          <p class="section-intro">
+            A space for reflection, questions, traditions, stories,
+            spiritual practice, justice, literature, and the many
+            ways people understand faith.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <span class="card-label">Reflection</span>
+            <h3>Faith & Literature</h3>
+            <p>
+              Where sacred questions meet poems, novels, stories,
+              characters, writers, and worlds.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Practice</span>
+            <h3>Spiritual Life</h3>
+            <p>
+              Reflections on prayer, presence, ritual, silence,
+              community, doubt, hope, and transformation.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Justice</span>
+            <h3>Faith & Social Life</h3>
+            <p>
+              Questions about dignity, community, responsibility,
+              belonging, and the world we build together.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ARTS
+    ========================== -->
+
+    <section class="about" id="arts">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">04 — Literary & Historical Social Arts</div>
+
+          <h2>
+            The archive is alive.
+          </h2>
+
+          <p class="section-intro">
+            Art is not separate from history. Music carries memory.
+            Literature carries testimony. Photographs hold time.
+            Stories carry people forward.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card">
+            <span class="card-label">Literature</span>
+            <h3>Poetry & Fiction</h3>
+            <p>
+              Original writing, literary experiments, criticism,
+              fragments, stories, and works in progress.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Music</span>
+            <h3>Songs & Memory</h3>
+            <p>
+              Playlists, artists, music history, lyrics,
+              interpretation, and the soundtracks of communities.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-label">Visual Culture</span>
+            <h3>Photography & Film</h3>
+            <p>
+              Images, visual storytelling, film, performance,
+              family archives, and social memory.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================== -->
+
+    <section id="projects">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">05 — Projects</div>
+
+          <h2>
+            Work that crosses borders.
+          </h2>
+
+          <p class="section-intro">
+            Long-form creative and scholarly projects can live here —
+            combining literature, research, history, art, memory,
+            and imagination.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="card project-card featured">
+            <div>
+              <span class="card-label">Creative Project</span>
+
+              <h3>
+                The Foreman’s Three Daughters
+                <br>
+                <em>La Tres Hijas del Capataz</em>
+              </h3>
+
+              <p>
+                A story moving between Zacatecas and California,
+                prophecy and memory, family and migration.
+              </p>
+            </div>
+
+            <a href="#" class="card-link">
+              Explore project →
+            </a>
+          </article>
+
+
+          <article class="card project-card">
+            <div>
+              <span class="card-label">Creative Project</span>
+
+              <h3>
+                The Still Waters of Ever Greene Lake
+              </h3>
+
+              <p>
+                An Afro-Latinx family story of photography,
+                ancestral memory, place, and a world-altering event.
+              </p>
+            </div>
+
+            <a href="#" class="card-link">
+              Explore project →
+            </a>
+          </article>
+
+
+          <article class="card project-card">
+            <div>
+              <span class="card-label">Future Project</span>
+
+              <h3>
+                More worlds to come.
+              </h3>
+
+              <p>
+                This space can grow with new writing, research,
+                collaborations, multimedia, and community projects.
+              </p>
+            </div>
+
+            <a href="#participate" class="card-link">
+              Contribute an idea →
+            </a>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ARCHIVE
+    ========================== -->
+
+    <section class="scholarship" id="archive">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">06 — Archive</div>
+
+          <h2>
+            A home for what deserves to be remembered.
+          </h2>
+
+          <p class="section-intro">
+            The archive will grow into a digital library of texts,
+            images, music, research, reflections, histories,
+            and community knowledge.
+          </p>
+        </div>
+
+        <div class="archive-grid">
+
+          <article class="archive-item">
+            <h3>Texts</h3>
+            <p>Essays · Poetry · Fiction</p>
+          </article>
+
+          <article class="archive-item">
+            <h3>Music</h3>
+            <p>Songs · Artists · Playlists</p>
+          </article>
+
+          <article class="archive-item">
+            <h3>History</h3>
+            <p>Documents · Memory · Research</p>
+          </article>
+
+          <article class="archive-item">
+            <h3>Visual Art</h3>
+            <p>Photography · Film · Images</p>
+          </article>
+
+          <article class="archive-item">
+            <h3>Oral History</h3>
+            <p>Voices · Testimony · Story</p>
+          </article>
+
+          <article class="archive-item">
+            <h3>Research</h3>
+            <p>Scholarship · Resources · Notes</p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         JOURNAL
+    ========================== -->
+
+    <section class="journal" id="journal">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">07 — Journal</div>
+
+          <h2>
+            Field notes from the here and now.
+          </h2>
+
+          <p class="section-intro">
+            A space for shorter writing, observations, questions,
+            reading notes, cultural reflections, and works in progress.
+          </p>
+        </div>
+
+        <div class="journal-list">
+
+          <article class="journal-entry">
+            <div class="journal-date">Coming soon</div>
+
+            <h3>
+              Field Notes
+            </h3>
+
+            <div class="journal-type">
+              Notes
+            </div>
+          </article>
+
+          <article class="journal-entry">
+            <div class="journal-date">Coming soon</div>
+
+            <h3>
+              Reading Notes
+            </h3>
+
+            <div class="journal-type">
+              Books
+            </div>
+          </article>
+
+          <article class="journal-entry">
+            <div class="journal-date">Coming soon</div>
+
+            <h3>
+              Cultural Notes
+            </h3>
+
+            <div class="journal-type">
+              Culture
+            </div>
+          </article>
+
+          <article class="journal-entry">
+            <div class="journal-date">Coming soon</div>
+
+            <h3>
+              Reflections
+            </h3>
+
+            <div class="journal-type">
+              Faith
+            </div>
+          </article>
+
+          <article class="journal-entry">
+            <div class="journal-date">Coming soon</div>
+
+            <h3>
+              Research Notes
+            </h3>
+
+            <div class="journal-type">
+              Scholarship
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         FUTURE CONTENT HUBS
+    ========================== -->
+
+    <section class="future">
+
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">
+            08 — The Site Can Grow
+          </div>
+
+          <h2>
+            There is room for more.
+          </h2>
+
+          <p class="section-intro">
+            These are intentionally open spaces for future content
+            hubs, collaborations, conversations, and discoveries.
+          </p>
+        </div>
+
+        <div class="future-grid">
+
+          <article class="future-item">
+            <h3>Conversations</h3>
+            <p>
+              Interviews, dialogues, and thoughtful exchanges.
+            </p>
+          </article>
+
+          <article class="future-item">
+            <h3>Resources</h3>
+            <p>
+              Books, archives, scholarships, organizations,
+              research tools, and educational resources.
+            </p>
+          </article>
+
+          <article class="future-item">
+            <h3>Community Voices</h3>
+            <p>
+              Stories and perspectives from people and communities.
+            </p>
+          </article>
+
+          <article class="future-item">
+            <h3>Events</h3>
+            <p>
+              Readings, gatherings, workshops, exhibitions,
+              and community events.
+            </p>
+          </article>
+
+          <article class="future-item">
+            <h3>Collaborations</h3>
+            <p>
+              Shared projects with writers, artists,
+              researchers, educators, and communities.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PARTICIPATE
+    ========================== -->
+
+    <section class="participate" id="participate">
+
+      <div class="container participate-inner">
+
+        <div class="section-number">09 — Participate</div>
+
+        <h2>
+          Bring something to the archive.
+        </h2>
+
+        <p>
+          aQui con fe can become a shared space. Submit a story,
+          suggest a resource, recommend music, share research,
+          contribute artwork, or imagine something together.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+          <a href="mailto:hello@aquiconfe.org" class="button primary">
+            Get in Touch
+          </a>
+
+          <a href="#home" class="button secondary">
+            Return to the Beginning
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-logo">
+            aQui con fe
+          </div>
+
+          <p class="footer-tagline">
+            Scholarship. Faith. Presence. Art. Community.
+          </p>
+        </div>
+
+        <div>
+          <h4>Explore</h4>
+
+          <ul>
+            <li><a href="#scholarship">Scholarship</a></li>
+            <li><a href="#faith">Faith</a></li>
+            <li><a href="#arts">Arts</a></li>
+            <li><a href="#archive">Archive</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Continue</h4>
+
+          <ul>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journal">Journal</a></li>
+            <li><a href="#participate">Participate</a></li>
+            <li><a href="#about">About aQui con fe</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+
+        <span>
+          © <span id="year"></span> aQui con fe
+        </span>
+
+        <span>
+          Here, with faith.
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    // Mobile navigation
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+    });
+
+
+    // Close mobile menu after clicking a link
+    document.querySelectorAll("#navLinks a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+
+    // Automatically update copyright year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
