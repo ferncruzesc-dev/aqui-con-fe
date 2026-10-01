@@ -138,6 +138,29 @@
       font-style: italic;
     }
 
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      flex: none;
+    }
+
+    .footer-mark img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -1253,6 +1276,8 @@
     }
 
   </style>
+    <link rel="icon" type="image/png" href="assets/img/hojita-ha-monogram.png">
+    <link rel="apple-touch-icon" href="assets/img/hojita-ha-monogram.png">
 </head>
 
 
@@ -1268,6 +1293,7 @@
     <div class="container nav-inner">
 
       <a href="index.html#home" class="logo">
+        <img src="assets/img/hojita-enso-logo.png" alt="Hojita de Agua" class="logo-mark">
         aQui <em>con fe</em>
       </a>
 
@@ -1629,6 +1655,10 @@
 
         <span>
           © <span id="year"></span> aQui con fe
+        </span>
+
+        <span class="footer-mark">
+          <img src="assets/img/hojita-ha-monogram.png" alt="Hojita de Agua monogram">
         </span>
 
         <span>
