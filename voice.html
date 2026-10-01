@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Voice — aQui con fe</title>
+
+  <meta
+    name="description"
+    content="Voice is the spoken-word room of aQui con fe — readings, conversations, interviews, audio notes, and a podcast in development. The house, out loud."
+  >
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =====================================================
+       aQui con fe
+       VERSION 2
+       ===================================================== */
+
+    :root {
+      --bg: #f4f0e8;
+      --bg-soft: #ebe6dc;
+      --text: #20251f;
+      --muted: #70756c;
+      --line: #c8c5bc;
+      --accent: #5b87ad;
+      --accent-dark: #4a6f96;
+      --blue: #89b8d8;
+      --blue-deep: #5b87ad;
+      --green: #93cfa0;
+      --green-deep: #5f9e70;
+      --purple: #b9a3e3;
+      --purple-deep: #8a6fc4;
+      --white: #faf8f2;
+
+      --serif: "Newsreader", Georgia, "Times New Roman", serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--mono);
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1180px, 90%);
+      margin: 0 auto;
+    }
+
+    /* =====================================================
+       ACCESSIBILITY
+       ===================================================== */
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 10px;
+      z-index: 9999;
+      padding: 12px 18px;
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .skip-link:focus {
+      left: 10px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent-dark);
+      outline-offset: 4px;
+    }
+
+    /* =====================================================
+       NAVIGATION
+       ===================================================== */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(244, 240, 232, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 74px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 26px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .logo em {
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links a {
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--blue-deep);
+    }
+
+    .menu-button {
+      display: none;
+      border: 1px solid var(--line);
+      background: transparent;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: var(--text);
+    }
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+      min-height: calc(100vh - 74px);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(640px 440px at 15% 20%, rgba(137, 184, 216, 0.28), transparent 62%),
+        radial-gradient(720px 520px at 88% 16%, rgba(185, 163, 227, 0.26), transparent 62%),
+        radial-gradient(680px 500px at 72% 88%, rgba(147, 207, 160, 0.26), transparent 62%),
+        radial-gradient(520px 400px at 8% 82%, rgba(137, 184, 216, 0.18), transparent 62%),
+        var(--bg);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 560px;
+      height: 560px;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(137, 184, 216, 0.22), transparent 65%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+
+    .hero-watermark {
+      position: absolute;
+      font-family: var(--serif);
+      font-size: 24vw;
+      font-weight: 300;
+      line-height: 1;
+      color: rgba(150, 140, 200, 0.07);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-watermark .wq {
+      font-style: italic;
+      font-size: 1.18em;
+      display: inline-block;
+      padding-right: 0.06em;
+      background: linear-gradient(135deg, rgba(137, 184, 216, 0.28), rgba(185, 163, 227, 0.28));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-small {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7fa8;
+      margin-bottom: 35px;
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 38px;
+    }
+
+    .hero-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero-dots span:nth-child(1) {
+      background: #89b8d8;
+    }
+
+    .hero-dots span:nth-child(2) {
+      background: #93cfa0;
+    }
+
+    .hero-dots span:nth-child(3) {
+      background: #b9a3e3;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(75px, 15vw, 185px);
+      font-weight: 300;
+      line-height: 0.76;
+      letter-spacing: -0.065em;
+      background: linear-gradient(112deg, #6d9dc4 0%, #89b8d8 28%, #93cfa0 55%, #b9a3e3 82%, #9a86d6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero h1 span {
+      display: block;
+    }
+
+    .hero h1 span:last-child {
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      max-width: 680px;
+      margin: 55px auto 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-motto {
+      margin-top: 18px;
+      font-family: var(--serif);
+      font-size: 24px;
+    }
+
+    /* =====================================================
+       BUTTONS
+       ===================================================== */
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      border: 1px solid var(--text);
+      padding: 12px 20px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.25s ease;
+    }
+
+    .button:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .button.filled {
+      background: linear-gradient(112deg, var(--blue), var(--purple));
+      border-color: transparent;
+      color: #232a3a;
+    }
+
+    .button.filled:hover {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    /* =====================================================
+       MARQUEE
+       ===================================================== */
+
+    .marquee {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 15px 0;
+      color: var(--muted);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background: linear-gradient(90deg, rgba(137, 184, 216, 0.14), rgba(147, 207, 160, 0.14), rgba(185, 163, 227, 0.14));
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marquee 32s linear infinite;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* =====================================================
+       GENERAL SECTIONS
+       ===================================================== */
+
+    section {
+      padding: 115px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    #envivo .section-label { color: var(--blue-deep); }
+    #rooms .section-label { color: var(--green-deep); }
+    #house .section-label { color: var(--purple-deep); }
+    #serial .section-label { color: var(--blue-deep); }
+    #community .section-label { color: var(--green-deep); }
+    #works .section-label { color: var(--purple-deep); }
+    #studio .section-label { color: var(--blue-deep); }
+    #archive .section-label { color: var(--green-deep); }
+    #newsletter .section-label { color: var(--purple-deep); }
+    #journal .section-label { color: var(--blue-deep); }
+    #participate .section-label { color: var(--green-deep); }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 88px);
+      font-weight: 300;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      margin: 0 auto 35px auto;
+      max-width: 1000px;
+      text-align: center;
+    }
+
+    .intro {
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1.45;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .directory-item h3,
+    .project h3,
+    .journal-feature h3,
+    .future-item h3 {
+      text-align: center;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    /* =====================================================
+       ABOUT
+       ===================================================== */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 90px;
+      margin-top: 65px;
+    }
+
+    .about-mark {
+      font-family: var(--serif);
+      font-size: 105px;
+      line-height: 0.8;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .about-text {
+      max-width: 720px;
+    }
+
+    .about-text p {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.55;
+      margin-bottom: 24px;
+    }
+
+    /* =====================================================
+       ROOMS
+       ===================================================== */
+
+    .rooms {
+      margin-top: 55px;
+      border-top: 1px solid var(--line);
+    }
+
+    .room {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-button {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      padding: 29px 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+
+    .room-name {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      margin: 0 auto;
+    }
+
+    .room-number {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .room:nth-child(3n+1) .room-number { color: var(--blue-deep); }
+    .room:nth-child(3n+2) .room-number { color: var(--green-deep); }
+    .room:nth-child(3n) .room-number { color: var(--purple-deep); }
+    .room:nth-child(3n+1) .room-icon { color: var(--blue-deep); }
+    .room:nth-child(3n+2) .room-icon { color: var(--green-deep); }
+    .room:nth-child(3n) .room-icon { color: var(--purple-deep); }
+
+    .room-icon {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .room-content {
+      display: none;
+      padding: 0 60px 40px 60px;
+      max-width: 850px;
+    }
+
+    .room-content p {
+      font-family: var(--serif);
+      font-size: 23px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .room.active .room-content {
+      display: block;
+    }
+
+    .room.active .room-icon {
+      transform: rotate(45deg);
+    }
+
+    .room-content .omg-creed {
+      font-style: italic;
+    }
+
+    .room-content .omg-heading {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-dark);
+      margin: 34px 0 16px 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .room-content .omg-flow {
+      list-style: none;
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+
+    .room-content .omg-flow li {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .room-content .omg-flow li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-content .omg-step {
+      font-family: var(--mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      padding-top: 4px;
+    }
+
+    .room-content .omg-modes {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .room-content .omg-modes li {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .room-content .omg-modes li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-content .omg-modes strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .room-content .room-expand {
+      font-size: 20px;
+    }
+
+    .room-content .room-strands {
+      list-style: none;
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+
+    .room-content .room-strands li {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .room-content .room-strands li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-content .room-strands strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .room-content .room-onehouse {
+      font-style: italic;
+    }
+
+    .envivo-feed {
+      margin-top: 45px;
+      max-width: 850px;
+    }
+
+    .envivo-entry {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .envivo-entry:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .envivo-date {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 12px;
+    }
+
+    .envivo-entry p {
+      font-family: var(--serif);
+      font-size: 23px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .envivo-subsection {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      max-width: 850px;
+    }
+
+    .envivo-subhead {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px 0;
+    }
+
+    .envivo-subsection p {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .subscribe-box {
+      margin-top: 30px;
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+    }
+
+    .subscribe-box .omg-heading {
+      margin-top: 0;
+    }
+
+    .subscribe-box p {
+      font-size: 19px;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-box .subscribe-soon {
+      opacity: 0.6;
+      cursor: default;
+    }
+
+    /* =====================================================
+       ROOM DIRECTORY
+       ===================================================== */
+
+    .room-directory {
+      margin-top: 65px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .directory-item {
+      background: var(--bg);
+      padding: 30px;
+      min-height: 180px;
+    }
+
+    .directory-number {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .directory-item h3 {
+      font-family: var(--serif);
+      font-size: 27px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .directory-item p {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* =====================================================
+       LARGE STATEMENTS
+       ===================================================== */
+
+    .statement-section {
+      background: var(--bg-soft);
+    }
+
+    .statement {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 78px);
+      font-weight: 300;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+      max-width: 1100px;
+    }
+
+    .statement em {
+      font-style: italic;
+    }
+
+    /* =====================================================
+       PROJECTS
+       ===================================================== */
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 1px;
+      background: var(--line);
+      margin-top: 65px;
+    }
+
+    .project {
+      background: var(--bg);
+      padding: 50px;
+      min-height: 370px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project:first-child {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .project-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .project:first-child .project-label {
+      color: #aaa99e;
+    }
+
+    .project h3 {
+      font-family: var(--serif);
+      font-size: clamp(35px, 4vw, 58px);
+      font-weight: 300;
+      line-height: 1;
+      margin: 25px 0;
+    }
+
+    .project h3 em {
+      font-style: italic;
+    }
+
+    .project p {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 570px;
+    }
+
+    .project:first-child p {
+      color: #aaa99e;
+    }
+
+    .project-link {
+      margin-top: 35px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .project-link a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    /* =====================================================
+       ARCHIVE
+       ===================================================== */
+
+    .archive-list {
+      margin-top: 60px;
+      border-top: 1px solid var(--line);
+    }
+
+    .archive-item {
+      display: grid;
+      grid-template-columns: 70px 1fr 150px;
+      gap: 25px;
+      padding: 27px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .archive-item span {
+      color: var(--muted);
+    }
+
+    .archive-item strong {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+    }
+
+    .archive-type {
+      text-align: right;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+    }
+
+    /* =====================================================
+       JOURNAL
+       ===================================================== */
+
+    .journal-feature {
+      margin-top: 60px;
+      padding: 55px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .journal-feature-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .journal-feature h3 {
+      font-family: var(--serif);
+      font-size: clamp(35px, 5vw, 62px);
+      font-weight: 300;
+      line-height: 1.05;
+      max-width: 800px;
+      margin-bottom: 25px;
+    }
+
+    .journal-feature p {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .journal-voice {
+      margin-top: 70px;
+      padding-top: 50px;
+      border-top: 1px solid var(--line);
+    }
+
+    .journal-subhead {
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 12px 0;
+    }
+
+    .journal-voice-intro {
+      font-family: var(--serif);
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 0 35px 0;
+    }
+
+    /* =====================================================
+       FUTURE HUBS
+       ===================================================== */
+
+    .future {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .future .section-label {
+      color: #aaa99e;
+    }
+
+    .future-intro {
+      font-family: var(--serif);
+      font-size: 25px;
+      color: #b9b8ae;
+      max-width: 760px;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #45483f;
+      margin-top: 60px;
+    }
+
+    .future-item {
+      background: var(--text);
+      padding: 32px;
+      min-height: 190px;
+    }
+
+    .future-item-number {
+      color: #777970;
+      font-size: 10px;
+      margin-bottom: 30px;
+    }
+
+    .future-item h3 {
+      font-family: var(--serif);
+      font-size: 27px;
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .future-item p {
+      color: #999b92;
+      font-size: 11px;
+    }
+
+    /* =====================================================
+       PARTICIPATE
+       ===================================================== */
+
+    .participate {
+      text-align: center;
+    }
+
+    .participate .section-title {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .participate-text {
+      max-width: 680px;
+      margin: auto;
+      font-family: var(--serif);
+      font-size: 25px;
+      color: var(--muted);
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    footer {
+      padding: 75px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-title {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    .footer-subtitle {
+      margin-top: 20px;
+      max-width: 370px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-heading {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--purple-deep);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.45;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      margin-top: 65px;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 9px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .about-mark {
+        font-size: 80px;
+      }
+
+      .room-directory {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .future-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+    @media (max-width: 650px) {
+
+      nav {
+        position: sticky;
+      }
+
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 68px;
+        width: 100%;
+        padding: 25px 5%;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 75vh;
+        padding: 80px 10px;
+      }
+
+      .hero::before {
+        width: 330px;
+        height: 330px;
+      }
+
+      .hero h1 {
+        font-size: clamp(70px, 20vw, 110px);
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 52px;
+      }
+
+      .intro {
+        font-size: 22px;
+      }
+
+      .about-text p {
+        font-size: 20px;
+      }
+
+      .room-content {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .room-content p {
+        font-size: 20px;
+      }
+
+      .room-content .omg-flow li {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .envivo-entry p {
+        font-size: 20px;
+      }
+
+      .room-directory {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        padding: 32px;
+        min-height: 320px;
+      }
+
+      .archive-item {
+        grid-template-columns: 45px 1fr;
+      }
+
+      .archive-type {
+        display: none;
+      }
+
+      .journal-feature {
+        padding: 30px;
+      }
+
+      .future-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
+    }
+
+    /* =====================================================
+       REDUCED MOTION
+       ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .marquee-inner {
+        animation: none;
+      }
+
+      * {
+        transition: none !important;
+      }
+
+    }
+
+    /* Voice page */
+    #voice .section-label { color: var(--purple-deep); }
+    .nav-links a.active { color: var(--purple-deep); opacity: 1; }
+    .voice-note {
+      margin-top: 70px;
+      text-align: center;
+    }
+    .voice-note p {
+      font-family: var(--serif);
+      font-size: 22px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 30px auto;
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <a href="#main" class="skip-link">
+    Skip to content
+  </a>
+
+
+  <nav aria-label="Main navigation">
+
+    <div class="container nav-inner">
+
+      <a href="index.html#home" class="logo">
+        aQui <em>con fe</em>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        MENU
+      </button>
+
+      <div class="nav-links" id="navLinks">
+
+        <a href="index.html#envivo">En vivo</a>
+        <a href="index.html#rooms">Rooms</a>
+        <a href="index.html#serial">Serial</a>
+        <a href="index.html#community">Community</a>
+        <a href="index.html#works">Works</a>
+        <a href="index.html#studio">Studio</a>
+        <a href="index.html#archive">Archive</a>
+        <a href="index.html#newsletter">Newsletter</a>
+        <a href="index.html#journal">Journal</a>
+        <a href="voice.html" class="active">Voice</a>
+        <a href="index.html#participate">Participate</a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <main id="main">
+
+
+    <!-- =====================================================
+         VOICE
+         ===================================================== -->
+
+    <section id="voice">
+
+      <div class="container">
+
+        <div class="section-label">
+          Voice
+        </div>
+
+        <h1 class="section-title">
+          The house, out loud.
+        </h1>
+
+        <p class="intro">
+          Voice is the spoken-word room of aQui con fe — poems
+          and chapters read aloud, conversations with artists
+          and thinkers, interviews that linger, and dispatches
+          recorded between rooms. Growing, in time, toward
+          a podcast.
+        </p>
+
+
+        <div class="project-grid">
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 01
+              </div>
+
+              <h3>
+                Readings
+              </h3>
+
+              <p>
+                Poems, stories, and chapters read aloud — including early readings from the novels. Hear the work before you read it. The page, given breath.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First readings coming soon &rarr;
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 02
+              </div>
+
+              <h3>
+                Conversations
+              </h3>
+
+              <p>
+                Dialogues with artists, scholars, neighbors, and friends — questions asked out loud, answers unfolding in real time.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First conversations coming soon &rarr;
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 03
+              </div>
+
+              <h3>
+                Interviews
+              </h3>
+
+              <p>
+                Longer talks on craft, faith, memory, and the work of making things — the thinking behind the work, in the maker's own voice.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First interviews coming soon &rarr;
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 04
+              </div>
+
+              <h3>
+                Audio notes
+              </h3>
+
+              <p>
+                Short dispatches from the house: a thought recorded while walking, a line read twice, sound gathered between rooms.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First audio notes coming soon &rarr;
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 05
+              </div>
+
+              <h3>
+                Live sessions
+              </h3>
+
+              <p>
+                Recordings from gatherings and readings in the rooms — the house with an audience, kept as it sounded.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First live sessions coming soon &rarr;
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 06
+              </div>
+
+              <h3>
+                Podcast
+              </h3>
+
+              <p>
+                In development. Readings, conversations, and notes gathered into seasons — aQui con fe, out loud. First episodes forthcoming.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              Podcast coming soon &rarr;
+            </div>
+
+          </article>
+
+
+        </div>
+
+
+        <div class="voice-note">
+
+          <p>
+            Every voice piece will live here as it is recorded —
+            join the newsletter to hear when the first ones arrive.
+          </p>
+
+          <div class="buttons" style="justify-content:center;">
+
+            <a href="index.html#newsletter" class="button filled">
+              Get notified
+            </a>
+
+            <a href="index.html#journal" class="button">
+              Back to the Journal
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <div class="footer-title">
+            aQui<br>
+            <em>con fe</em>
+          </div>
+
+          <p class="footer-subtitle">
+            A living space for scholarship, faith,
+            music, literature, history, memory,
+            art, and community.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-heading">
+            Explore
+          </div>
+
+          <div class="footer-links">
+
+            <a href="index.html#envivo">
+              En vivo
+            </a>
+
+            <a href="index.html#rooms">
+              The Rooms
+            </a>
+
+            <a href="index.html#serial">
+              Serial
+            </a>
+
+            <a href="index.html#community">
+              Community
+            </a>
+
+            <a href="index.html#works">
+              Works
+            </a>
+
+            <a href="index.html#studio">
+              Studio
+            </a>
+
+            <a href="index.html#archive">
+              Archive
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="footer-heading">
+            Continue
+          </div>
+
+          <div class="footer-links">
+
+            <a href="index.html#newsletter">
+              Newsletter
+            </a>
+
+            <a href="index.html#journal">
+              Journal
+            </a>
+
+            <a href="voice.html">
+              Voice
+            </a>
+
+            <a href="voice.html">
+              Voice
+            </a>
+
+            <a href="index.html#participate">
+              Participate
+            </a>
+
+            <a href="index.html#rooms">
+              Enter the House
+            </a>
+
+            <a href="index.html#home">
+              Beginning
+            </a>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="year"></span> aQui con fe
+        </span>
+
+        <span>
+          made with presence
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+
+  <script>
+
+    /* -----------------------------------------------
+       MOBILE MENU
+       ----------------------------------------------- */
+
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+
+    menuButton.addEventListener("click", function () {
+
+      const isOpen =
+        navLinks.classList.toggle("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        isOpen ? "true" : "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        isOpen
+          ? "Close navigation menu"
+          : "Open navigation menu"
+      );
+
+      menuButton.textContent =
+        isOpen ? "CLOSE" : "MENU";
+
+      document.body.classList.toggle(
+        "menu-open",
+        isOpen
+      );
+
+    });
+
+
+    /* -----------------------------------------------
+       CLOSE MOBILE MENU WHEN LINK IS CLICKED
+       ----------------------------------------------- */
+
+    document
+      .querySelectorAll("#navLinks a")
+      .forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+          navLinks.classList.remove("open");
+
+          menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          menuButton.setAttribute(
+            "aria-label",
+            "Open navigation menu"
+          );
+
+          menuButton.textContent = "MENU";
+
+          document.body.classList.remove(
+            "menu-open"
+          );
+
+        });
+
+      });
+
+
+    /* -----------------------------------------------
+       EXPANDABLE ROOMS
+       ----------------------------------------------- */
+
+    document
+      .querySelectorAll(".room-button")
+      .forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+          const room =
+            button.closest(".room");
+
+          const isActive =
+            room.classList.contains("active");
+
+          /*
+             Close other rooms.
+          */
+
+          document
+            .querySelectorAll(".room")
+            .forEach(function (otherRoom) {
+
+              otherRoom.classList.remove("active");
+
+              const otherButton =
+                otherRoom.querySelector(".room-button");
+
+              otherButton.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            });
+
+
+          /*
+             Open selected room.
+          */
+
+          if (!isActive) {
+
+            room.classList.add("active");
+
+            button.setAttribute(
+              "aria-expanded",
+              "true"
+            );
+
+          }
+
+        });
+
+      });
+
+
+    /* -----------------------------------------------
+       CONTACT PLACEHOLDER
+       ----------------------------------------------- */
+
+    const contactButton =
+      document.getElementById("contactButton");
+
+    const contactNotice =
+      document.getElementById("contactNotice");
+
+    contactButton.addEventListener(
+      "click",
+      function (event) {
+
+        event.preventDefault();
+
+        contactNotice.style.display =
+          "block";
+
+      }
+    );
+
+
+    /* -----------------------------------------------
+       CURRENT YEAR
+       ----------------------------------------------- */
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>

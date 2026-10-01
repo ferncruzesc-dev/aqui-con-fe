@@ -33,8 +33,14 @@
       --text: #20251f;
       --muted: #70756c;
       --line: #c8c5bc;
-      --accent: #8c7b63;
-      --accent-dark: #665944;
+      --accent: #5b87ad;
+      --accent-dark: #4a6f96;
+      --blue: #89b8d8;
+      --blue-deep: #5b87ad;
+      --green: #93cfa0;
+      --green-deep: #5f9e70;
+      --purple: #b9a3e3;
+      --purple-deep: #8a6fc4;
       --white: #faf8f2;
 
       --serif: "Newsreader", Georgia, "Times New Roman", serif;
@@ -146,7 +152,8 @@
     }
 
     .nav-links a:hover {
-      opacity: 0.45;
+      opacity: 1;
+      color: var(--blue-deep);
     }
 
     .menu-button {
@@ -195,7 +202,7 @@
     .hero-watermark {
       position: absolute;
       font-family: var(--serif);
-      font-size: 32vw;
+      font-size: 24vw;
       font-weight: 300;
       line-height: 1;
       color: rgba(150, 140, 200, 0.07);
@@ -209,6 +216,8 @@
     .hero-watermark .wq {
       font-style: italic;
       font-size: 1.18em;
+      display: inline-block;
+      padding-right: 0.06em;
       background: linear-gradient(135deg, rgba(137, 184, 216, 0.28), rgba(185, 163, 227, 0.28));
       -webkit-background-clip: text;
       background-clip: text;
@@ -226,18 +235,6 @@
       letter-spacing: 0.18em;
       color: #6b7fa8;
       margin-bottom: 35px;
-    }
-
-    .hero .button.filled {
-      background: linear-gradient(112deg, #89b8d8, #b9a3e3);
-      border-color: transparent;
-      color: #232a3a;
-    }
-
-    .hero .button.filled:hover {
-      background: transparent;
-      color: var(--text);
-      border-color: var(--text);
     }
 
     .hero-dots {
@@ -326,13 +323,15 @@
     }
 
     .button.filled {
-      background: var(--text);
-      color: var(--bg);
+      background: linear-gradient(112deg, var(--blue), var(--purple));
+      border-color: transparent;
+      color: #232a3a;
     }
 
     .button.filled:hover {
       background: transparent;
       color: var(--text);
+      border-color: var(--text);
     }
 
     /* =====================================================
@@ -349,6 +348,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      background: linear-gradient(90deg, rgba(137, 184, 216, 0.14), rgba(147, 207, 160, 0.14), rgba(185, 163, 227, 0.14));
     }
 
     .marquee-inner {
@@ -381,7 +381,20 @@
       letter-spacing: 0.15em;
       color: var(--muted);
       margin-bottom: 25px;
+      text-align: center;
     }
+
+    #envivo .section-label { color: var(--blue-deep); }
+    #rooms .section-label { color: var(--green-deep); }
+    #house .section-label { color: var(--purple-deep); }
+    #serial .section-label { color: var(--blue-deep); }
+    #community .section-label { color: var(--green-deep); }
+    #works .section-label { color: var(--purple-deep); }
+    #studio .section-label { color: var(--blue-deep); }
+    #archive .section-label { color: var(--green-deep); }
+    #newsletter .section-label { color: var(--purple-deep); }
+    #journal .section-label { color: var(--blue-deep); }
+    #participate .section-label { color: var(--green-deep); }
 
     .section-title {
       font-family: var(--serif);
@@ -389,8 +402,9 @@
       font-weight: 300;
       line-height: 0.98;
       letter-spacing: -0.035em;
-      margin-bottom: 35px;
+      margin: 0 auto 35px auto;
       max-width: 1000px;
+      text-align: center;
     }
 
     .intro {
@@ -398,6 +412,16 @@
       font-family: var(--serif);
       font-size: 26px;
       line-height: 1.45;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .directory-item h3,
+    .project h3,
+    .journal-feature h3,
+    .future-item h3 {
+      text-align: center;
     }
 
     .muted {
@@ -465,12 +489,20 @@
       align-items: center;
       gap: 25px;
       font-size: 13px;
+      margin: 0 auto;
     }
 
     .room-number {
       color: var(--muted);
       font-size: 10px;
     }
+
+    .room:nth-child(3n+1) .room-number { color: var(--blue-deep); }
+    .room:nth-child(3n+2) .room-number { color: var(--green-deep); }
+    .room:nth-child(3n) .room-number { color: var(--purple-deep); }
+    .room:nth-child(3n+1) .room-icon { color: var(--blue-deep); }
+    .room:nth-child(3n+2) .room-icon { color: var(--green-deep); }
+    .room:nth-child(3n) .room-icon { color: var(--purple-deep); }
 
     .room-icon {
       font-size: 20px;
@@ -509,6 +541,7 @@
       color: var(--accent-dark);
       margin: 34px 0 16px 0;
       font-weight: 600;
+      text-align: center;
     }
 
     .room-content .omg-flow {
@@ -1002,7 +1035,7 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.13em;
-      color: var(--muted);
+      color: var(--purple-deep);
       margin-bottom: 18px;
     }
 
@@ -1248,6 +1281,7 @@
         <a href="#archive">Archive</a>
         <a href="#newsletter">Newsletter</a>
         <a href="#journal">Journal</a>
+        <a href="voice.html">Voice</a>
         <a href="#participate">Participate</a>
 
       </div>
@@ -1978,7 +2012,7 @@
          ===================================================== -->
 
 
-    <section>
+    <section id="house">
 
       <div class="container">
 
@@ -2818,91 +2852,16 @@
           </h3>
 
           <p class="journal-voice-intro">
-            The spoken word, kept under the Journal — readings,
-            conversations, and interviews. Growing, in time,
-            toward a podcast: the house, out loud.
+            The spoken word now has a room of its own —
+            readings, conversations, interviews, audio notes,
+            and a podcast in development. The house, out loud.
           </p>
 
-          <div class="project-grid">
+          <div class="buttons" style="justify-content:center;">
 
-
-<article class="project">
-
-            <div>
-
-              <div class="project-label">
-                Voice / 01
-              </div>
-
-              <h3>
-                Readings
-              </h3>
-
-              <p>
-                Works read aloud — poems, stories, chapters.
-                The page, given breath.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              First readings coming soon →
-            </div>
-
-          </article>
-
-
-          <article class="project">
-
-            <div>
-
-              <div class="project-label">
-                Voice / 02
-              </div>
-
-              <h3>
-                Conversations
-              </h3>
-
-              <p>
-                Dialogues and interviews — voices in the room,
-                questions asked out loud.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              First conversations coming soon →
-            </div>
-
-          </article>
-
-
-          <article class="project">
-
-            <div>
-
-              <div class="project-label">
-                Voice / 03
-              </div>
-
-              <h3>
-                Podcast
-              </h3>
-
-              <p>
-                In development. The house, out loud —
-                first episodes forthcoming.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              Podcast coming soon →
-            </div>
-
-          </article>
-
+            <a href="voice.html" class="button filled">
+              Step into Voice &rarr;
+            </a>
 
           </div>
 
@@ -3057,6 +3016,10 @@
 
             <a href="#journal">
               Journal
+            </a>
+
+            <a href="voice.html">
+              Voice
             </a>
 
             <a href="#participate">
