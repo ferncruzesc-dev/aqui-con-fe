@@ -185,18 +185,24 @@
       pointer-events: none;
     }
 
-    .hero::after {
-      content: "aQ";
+    .hero-watermark {
       position: absolute;
       font-family: var(--serif);
       font-size: 32vw;
       font-weight: 300;
       line-height: 1;
-      color: rgba(140, 123, 99, 0.045);
+      color: rgba(140, 123, 99, 0.05);
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .hero-watermark .wq {
+      font-style: italic;
+      font-size: 1.18em;
+      color: rgba(140, 123, 99, 0.11);
     }
 
     .hero-content {
@@ -568,6 +574,29 @@
     .envivo-entry p {
       font-family: var(--serif);
       font-size: 23px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .envivo-subsection {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      max-width: 850px;
+    }
+
+    .envivo-subhead {
+      font-family: var(--serif);
+      font-size: 32px;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      margin: 0 0 14px 0;
+    }
+
+    .envivo-subsection p {
+      font-family: var(--serif);
+      font-size: 20px;
       line-height: 1.5;
       color: var(--muted);
       margin: 0;
@@ -1141,9 +1170,12 @@
         <a href="#rooms">Rooms</a>
         <a href="#community">Community</a>
         <a href="#works">Works</a>
+        <a href="#serial">Serial</a>
         <a href="#projects">Projects</a>
         <a href="#archive">Archive</a>
         <a href="#journal">Journal</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="#voice">Voice</a>
         <a href="#participate">Participate</a>
 
       </div>
@@ -1161,6 +1193,8 @@
          ===================================================== -->
 
     <header class="hero" id="home">
+
+      <div class="hero-watermark" aria-hidden="true">a<span class="wq">Q</span></div>
 
       <div class="hero-content">
 
@@ -1259,6 +1293,21 @@
               faith, music, literature, history, and the social arts.
             </p>
           </article>
+
+        </div>
+
+
+        <div class="envivo-subsection">
+
+          <h3 class="envivo-subhead">
+            Voz con Fe
+          </h3>
+
+          <p>
+            Live voice from the house — readings, conversations,
+            and broadcasts as they happen. First transmission
+            forthcoming.
+          </p>
 
         </div>
 
@@ -1475,6 +1524,17 @@
                 conversations with books — where sentences are taken apart
                 to see how they hold.
               </p>
+
+              <ul class="room-strands">
+                <li><strong>Books</strong> — the shelves themselves; volumes keeping each other company.</li>
+                <li><strong>Poetry</strong> — language distilled until it burns.</li>
+                <li><strong>Fiction</strong> — invented worlds telling true things.</li>
+                <li><strong>Criticism</strong> — reading as a second act of creation.</li>
+                <li><strong>Language</strong> — the material everything here is made of.</li>
+                <li><strong>Translation</strong> — carrying meaning across the border of tongues.</li>
+                <li><strong>Intertextuality</strong> — books talking to books when we're not listening.</li>
+                <li><strong>The strange architecture of the written word</strong> — sentences built like rooms; come inside them.</li>
+              </ul>
 
               <p class="room-onehouse">
                 <em>One house: the Library's sentences wander into every room.</em>
@@ -2124,6 +2184,10 @@
           05 / Faith
         </div>
 
+        <h2 class="section-title">
+          Adelante con Fe
+        </h2>
+
         <p class="statement">
           Faith can be a question
           as much as an answer.
@@ -2196,24 +2260,22 @@
             <div>
 
               <div class="project-label">
-                Novel
+                Short novella
               </div>
 
               <h3>
-                The Foreman’s Three Daughters
-                <br>
-                <em>La Tres Hijas del Capataz</em>
+                No Shave November
               </h3>
 
               <p>
-                A story moving between Zacatecas and California,
-                prophecy and memory, family and migration.
+                A short novella by F. Cruz Escalante.
+                The first chapter arrives soon in the Serial.
               </p>
 
             </div>
 
             <div class="project-link">
-              Publication coming soon →
+              First chapter coming soon →
             </div>
 
           </article>
@@ -2255,22 +2317,22 @@
             <div>
 
               <div class="project-label">
-                Short stories
+                Short story
               </div>
 
               <h3>
-                Stories
+                The Curse of the Pearls
               </h3>
 
               <p>
-                A shelf for short fiction.
-                First stories forthcoming.
+                A short story by F. Cruz Escalante.
+                Publication forthcoming.
               </p>
 
             </div>
 
             <div class="project-link">
-              Shelf opening soon →
+              Publication coming soon →
             </div>
 
           </article>
@@ -2283,22 +2345,23 @@
             <div>
 
               <div class="project-label">
-                Poems
+                Poems & songs
               </div>
 
               <h3>
-                Poems
+                Poesia de Fe
               </h3>
 
               <p>
-                A shelf for poems.
-                First poems forthcoming.
+                A collection of poems and songs
+                by F. Cruz Escalante.
+                Publication forthcoming.
               </p>
 
             </div>
 
             <div class="project-link">
-              Shelf opening soon →
+              Publication coming soon →
             </div>
 
           </article>
@@ -2340,6 +2403,106 @@
 
 
     <!-- =====================================================
+         SERIAL
+         ===================================================== -->
+
+    <section id="serial">
+
+      <div class="container">
+
+        <div class="section-label">
+          Serial
+        </div>
+
+        <h2 class="section-title">
+          A story in chapters.
+        </h2>
+
+        <p class="intro">
+          Every two weeks, a new chapter of an ongoing story —
+          yours to read with a small subscription.
+        </p>
+
+
+        <div class="project-grid">
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Chapter One
+              </div>
+
+              <h3>
+                No Shave November
+              </h3>
+
+              <p>
+                A short novella by F. Cruz Escalante.
+                Where the story begins — the opening
+                chapter is forthcoming.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              Chapter coming soon →
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Every two weeks
+              </div>
+
+              <h3>
+                The story continues
+              </h3>
+
+              <p>
+                A new chapter twice a month, as long as
+                the story has somewhere to go.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              New chapters coming soon →
+            </div>
+
+          </article>
+
+
+        </div>
+
+
+        <div class="subscribe-box" style="max-width: 850px; margin-top: 45px;">
+
+          <p>
+            Chapters are included with a small monthly subscription —
+            stories, videos, and photos, with deeper access at
+            higher tiers. Subscribe under coMe for Me.
+          </p>
+
+          <span class="button subscribe-soon">
+            Subscribe — coming soon
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
          PROJECTS
          ===================================================== -->
 
@@ -2365,38 +2528,6 @@
         <div class="project-grid">
 
 
-          <!-- PROJECT ONE -->
-
-          <article class="project">
-
-            <div>
-
-              <div class="project-label">
-                Creative Project / 01
-              </div>
-
-              <h3>
-                The Foreman’s Three Daughters
-                <br>
-                <em>La Tres Hijas del Capataz</em>
-              </h3>
-
-              <p>
-                A story moving between Zacatecas and California,
-                prophecy and memory, family and migration.
-                A world where inherited stories become questions
-                about belonging, destiny, and transformation.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              Project archive coming soon →
-            </div>
-
-          </article>
-
-
           <!-- PROJECT TWO -->
 
           <article class="project">
@@ -2404,7 +2535,7 @@
             <div>
 
               <div class="project-label">
-                Creative Project / 02
+                Creative Project / 01
               </div>
 
               <h3>
@@ -2666,6 +2797,243 @@
             </a>
 
           </div>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Journal / 01
+              </div>
+
+              <h3>
+                This month's entry
+              </h3>
+
+              <p>
+                My own published journal entry for the month.
+                The first entry is forthcoming.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First entry coming soon →
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Journal / 02
+              </div>
+
+              <h3>
+                A scholarly journal
+              </h3>
+
+              <p>
+                A scholarly journal I found interesting —
+                notes and reflections on worth-reading scholarship.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First feature coming soon →
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Journal / 03
+              </div>
+
+              <h3>
+                The ongoing journal
+              </h3>
+
+              <p>
+                Ideas, observations, questions, discoveries,
+                reading notes, cultural reflections, and
+                unfinished thoughts — kept live.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              Ongoing — opening soon →
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         NEWSLETTER
+         ===================================================== -->
+
+    <section id="newsletter">
+
+      <div class="container">
+
+        <div class="section-label">
+          Newsletter
+        </div>
+
+        <h2 class="section-title">
+          Once a month,
+          in your inbox.
+        </h2>
+
+        <p class="intro">
+          A monthly letter from the house: new pieces, room notes,
+          reading and listening lists, and things worth saying —
+          delivered once a month, never more.
+        </p>
+
+        <div class="subscribe-box" style="max-width: 850px;">
+
+          <p>
+            The first letter is being written.
+            Leave the door open — email signup opens soon.
+          </p>
+
+          <span class="button subscribe-soon">
+            Subscribe — coming soon
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VOICE
+         ===================================================== -->
+
+    <section id="voice">
+
+      <div class="container">
+
+        <div class="section-label">
+          Voice
+        </div>
+
+        <h2 class="section-title">
+          Give it voice.
+        </h2>
+
+        <p class="intro">
+          A space for the spoken word — readings, conversations,
+          and interviews. Growing, in time, toward a podcast:
+          the house, out loud.
+        </p>
+
+
+        <div class="project-grid">
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 01
+              </div>
+
+              <h3>
+                Readings
+              </h3>
+
+              <p>
+                Works read aloud — poems, stories, chapters.
+                The page, given breath.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First readings coming soon →
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 02
+              </div>
+
+              <h3>
+                Conversations
+              </h3>
+
+              <p>
+                Dialogues and interviews — voices in the room,
+                questions asked out loud.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              First conversations coming soon →
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Voice / 03
+              </div>
+
+              <h3>
+                Podcast
+              </h3>
+
+              <p>
+                In development. The house, out loud —
+                first episodes forthcoming.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              Podcast coming soon →
+            </div>
+
+          </article>
+
 
         </div>
 
@@ -2985,6 +3353,10 @@
               Works
             </a>
 
+            <a href="#serial">
+              Serial
+            </a>
+
             <a href="#projects">
               Projects
             </a>
@@ -3008,6 +3380,14 @@
 
             <a href="#journal">
               Journal
+            </a>
+
+            <a href="#newsletter">
+              Newsletter
+            </a>
+
+            <a href="#voice">
+              Voice
             </a>
 
             <a href="#participate">
