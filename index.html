@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="aQui con fe is a living space for scholarship, faith, music, literature, history, art, memory, and community."
+    content="aQui con fe is a living space for scholarship, faith, music, literature, art, and memory."
   >
 
   <!-- Fonts -->
@@ -204,9 +204,10 @@
     .hero {
       min-height: calc(100vh - 74px);
       display: grid;
-      place-items: center;
+      justify-items: center;
+      align-items: end;
       text-align: center;
-      padding: 100px 20px;
+      padding: 60px 20px 12vh;
       position: relative;
       overflow: hidden;
       background:
@@ -322,7 +323,7 @@
     }
 
     .hero-motto {
-      margin-top: 18px;
+      margin-top: 42px;
       font-family: var(--serif);
       font-size: 24px;
     }
@@ -1268,6 +1269,314 @@
 
     }
 
+    /* =====================================================
+       RETHEME — October 2026
+       Lowered hero (see .hero) · per-room layouts ·
+       amplified color system
+       ===================================================== */
+
+    /* ---- Section labels: bolder, with a color rule ---- */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.26em;
+    }
+    .section-label::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 3px;
+      border-radius: 2px;
+      margin: 14px auto 0;
+      background: currentColor;
+      opacity: 0.65;
+    }
+
+    /* ---- Section tint washes: color from the top ---- */
+    #envivo     { background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
+    #rooms      { background: linear-gradient(180deg, rgba(147,207,160,.14), rgba(147,207,160,0) 62%); }
+    #serial     { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
+    #community  { background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
+    #works      { background: linear-gradient(180deg, rgba(147,207,160,.14), rgba(147,207,160,0) 62%); }
+    #studio     { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
+    #archive    { background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
+    #newsletter { background: linear-gradient(180deg, rgba(147,207,160,.14), rgba(147,207,160,0) 62%); }
+    #journal    { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
+    #participate{ background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
+
+    /* ---- Project cards: colored crown borders ---- */
+    .project { border-top: 4px solid transparent; }
+    .project:nth-child(3n+1) { border-top-color: var(--blue); }
+    .project:nth-child(3n+2) { border-top-color: var(--green); }
+    .project:nth-child(3n)   { border-top-color: var(--purple); }
+
+    /* ---- Filled buttons: deeper gradient, soft glow ---- */
+    .button.filled {
+      background: linear-gradient(112deg, var(--blue-deep), var(--blue) 35%, var(--green) 65%, var(--purple-deep));
+      color: #ffffff;
+      box-shadow: 0 6px 22px rgba(137,184,216,.38);
+    }
+    .button.filled:hover {
+      background: linear-gradient(112deg, var(--purple-deep), var(--green) 35%, var(--blue) 65%, var(--blue-deep));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 9px 30px rgba(185,163,227,.5);
+      transform: translateY(-1px);
+    }
+
+    /* ---- Room accents: one color per room ---- */
+    .room-01 .room-number, .room-01 .room-icon { color: var(--blue-deep); }
+    .room-02 .room-number, .room-02 .room-icon { color: var(--purple-deep); }
+    .room-03 .room-number, .room-03 .room-icon { color: var(--green-deep); }
+    .room-04 .room-number, .room-04 .room-icon { color: var(--blue-deep); }
+    .room-05 .room-number, .room-05 .room-icon { color: var(--purple-deep); }
+    .room-06 .room-number, .room-06 .room-icon { color: var(--green-deep); }
+    .room-07 .room-number, .room-07 .room-icon { color: var(--blue-deep); }
+    .room-08 .room-number, .room-08 .room-icon { color: var(--purple-deep); }
+    .room-09 .room-number, .room-09 .room-icon { color: var(--green-deep); }
+    .room-10 .room-number, .room-10 .room-icon { color: var(--blue-deep); }
+    .room-11 .room-number, .room-11 .room-icon { color: var(--purple-deep); }
+
+    .room-button { transition: background 0.25s ease; border-radius: 6px; }
+    .room-01 .room-button:hover, .room-04 .room-button:hover,
+    .room-07 .room-button:hover, .room-10 .room-button:hover { background: rgba(137,184,216,.12); }
+    .room-02 .room-button:hover, .room-05 .room-button:hover,
+    .room-08 .room-button:hover, .room-11 .room-button:hover { background: rgba(185,163,227,.13); }
+    .room-03 .room-button:hover, .room-06 .room-button:hover,
+    .room-09 .room-button:hover { background: rgba(147,207,160,.14); }
+
+    /* ============ ROOM 01 · The Study — the Ledger ============ */
+    .room-01 .room-name { margin: 0; }
+    .room-01 .room-number { font-size: 13px; font-weight: 700; }
+    .room-01 .room-content {
+      max-width: 1020px;
+      border-left: 3px solid var(--blue);
+      padding: 0 60px 40px 36px;
+    }
+    .room-01 .room-content > p:first-child {
+      column-count: 2;
+      column-gap: 46px;
+    }
+
+    /* ============ ROOM 02 · The Chapel — the Sanctuary ============ */
+    .room-02 .room-name { flex-direction: column; gap: 9px; }
+    .room-02 .room-number { font-size: 10px; letter-spacing: 0.3em; }
+    .room-02 .room-name::after {
+      content: "";
+      width: 9px; height: 9px; border-radius: 50%;
+      background: radial-gradient(circle, #e8c76a 0%, #d99a4e 55%, transparent 72%);
+      box-shadow: 0 0 14px 4px rgba(232,199,106,.55);
+      margin-top: 6px;
+    }
+    .room-02 .room-content {
+      margin: 0 auto;
+      max-width: 560px;
+      text-align: center;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .room-02 .room-content p { font-style: italic; }
+    .room-02 .room-content .omg-heading { color: var(--purple-deep); }
+
+    /* ============ ROOM 03 · The Library — the Shelves ============ */
+    .room-03 .room-name { margin: 0; flex-direction: row-reverse; }
+    .room-03 .room-content { max-width: 980px; }
+    .room-03 .room-strands {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .room-03 .room-strands li {
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--green);
+      border-top: none;
+      padding: 16px 18px;
+      background: rgba(147,207,160,.08);
+    }
+    .room-03 .room-strands li:last-child { border-bottom: 1px solid var(--line); }
+    .room-03 .room-strands li strong { display: block; margin-bottom: 5px; }
+
+    /* ============ ROOM 04 · The Listening Room — the Setlist ============ */
+    .room-04 .room-strands { counter-reset: track; }
+    .room-04 .room-strands li {
+      counter-increment: track;
+      display: flex;
+      gap: 20px;
+      align-items: baseline;
+      border-top: none;
+      border-bottom: 1px dashed var(--line);
+      padding: 15px 6px;
+    }
+    .room-04 .room-strands li:first-child { border-top: 1px dashed var(--line); }
+    .room-04 .room-strands li:last-child { border-bottom: 1px dashed var(--line); }
+    .room-04 .room-strands li::before {
+      content: counter(track, decimal-leading-zero);
+      font-family: var(--serif);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--blue-deep);
+      min-width: 36px;
+    }
+
+    /* ============ ROOM 05 · The Archive — the Dossier ============ */
+    .room-05 .room-content {
+      max-width: 780px;
+      background: rgba(185,163,227,.07);
+      border: 1px solid var(--line);
+      outline: 3px double rgba(138,111,196,.55);
+      outline-offset: 7px;
+      padding: 44px 46px;
+    }
+    .room-05 .room-number { font-weight: 700; letter-spacing: 0.2em; }
+
+    /* ============ ROOM 06 · The Gallery — the Frames ============ */
+    .room-06 .room-content { max-width: 1020px; }
+    .room-06 .room-strands {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .room-06 .room-strands li {
+      border: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      outline: 1px solid var(--line);
+      outline-offset: 5px;
+      padding: 18px 16px;
+      background: rgba(147,207,160,.07);
+    }
+    .room-06 .room-strands li:last-child { border-bottom: 1px solid var(--line); }
+    .room-06 .room-strands li strong { display: block; margin-bottom: 6px; color: var(--green-deep); }
+
+    /* ============ ROOM 07 · The Commons — the Plaza ============ */
+    .room-07 .room-content { margin: 0 auto; text-align: center; max-width: 740px; }
+    .room-07 .room-name::before, .room-07 .room-name::after {
+      content: "";
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(137,184,216,.25);
+      flex: none;
+    }
+    .room-07 .room-content .omg-heading { color: var(--blue-deep); }
+
+    /* ============ ROOM 08 · The Workshop — the Workbench ============ */
+    .room-08 .room-content {
+      max-width: 940px;
+      background: rgba(185,163,227,.09);
+      border-top: 5px solid var(--purple);
+      padding: 38px 42px 46px;
+    }
+    .room-08 .room-strands {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .room-08 .room-strands li {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--purple);
+      padding: 16px 18px;
+    }
+    .room-08 .room-strands li:last-child { border-bottom: 1px solid var(--line); }
+
+    /* ============ ROOM 09 · OMG! moments — the Stage ============ */
+    .room-09 .room-content {
+      max-width: 940px;
+      background: #26232e;
+      color: #ece9e2;
+      border-radius: 6px;
+      padding: 48px 52px 52px;
+      border-top: 5px solid var(--green);
+    }
+    .room-09 .room-content p { color: #cfccc2; }
+    .room-09 .room-content .omg-heading { color: var(--green); }
+    .room-09 .room-content .omg-creed { color: #ece9e2; font-size: 24px; }
+    .room-09 .room-content .omg-flow li { color: #cfccc2; border-top-color: rgba(236,233,226,.22); }
+    .room-09 .room-content .omg-flow li:last-child { border-bottom-color: rgba(236,233,226,.22); }
+    .room-09 .room-content .omg-step { color: var(--green); }
+    .room-09 .room-content .omg-modes li { color: #cfccc2; border-top-color: rgba(236,233,226,.22); }
+    .room-09 .room-content .omg-modes li:last-child { border-bottom-color: rgba(236,233,226,.22); }
+    .room-09 .room-content .omg-modes strong { color: #ffffff; }
+
+    /* ============ ROOM 10 · Visual Diary — the Reel ============ */
+    .room-10 .room-content {
+      max-width: none;
+      padding: 12px 60px 48px;
+    }
+    .room-10.active .room-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      overflow-x: auto;
+    }
+    .room-10 .room-content > h4 {
+      flex: 1 0 100%;
+      order: -1;
+      border: none;
+      background: none;
+      padding: 0 0 4px;
+      text-align: center;
+      color: var(--blue-deep);
+    }
+    .room-10 .room-content > p {
+      flex: 0 0 330px;
+      border-top: 12px solid #26232e;
+      border-bottom: 12px solid #26232e;
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 12px 50%, rgba(236,233,226,.85) 3px, transparent 3.5px),
+        radial-gradient(circle at 32px 50%, rgba(236,233,226,.85) 3px, transparent 3.5px),
+        rgba(137,184,216,.08);
+      background-size: 44px 12px, 44px 12px, auto;
+      background-position: top, bottom, 0 0;
+      background-repeat: repeat-x, repeat-x, no-repeat;
+      background-clip: border-box, border-box, padding-box;
+      padding: 30px 24px;
+    }
+
+    /* ============ ROOM 11 · coMe for Me — the Velvet ============ */
+    .room-11 .room-content {
+      max-width: 700px;
+      margin: 0 auto;
+      background: linear-gradient(160deg, rgba(185,163,227,.24), rgba(185,163,227,.08));
+      border: 1px solid rgba(138,111,196,.5);
+      border-radius: 20px;
+      padding: 46px 50px 50px;
+      box-shadow: 0 14px 44px rgba(138,111,196,.22);
+    }
+    .room-11 .room-content p { font-style: italic; }
+    .room-11 .room-content .omg-heading { color: var(--purple-deep); }
+
+    /* ---- Hero title lockup: the brush Q ---- */
+    .hero h1.title-lockup {
+      background: none;
+      display: inline-block;
+      text-align: left;
+      font-size: clamp(60px, 12.5vw, 155px);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+    .title-lockup .t-a,
+    .title-lockup .t-ui {
+      background: linear-gradient(112deg, #6d9dc4 0%, #89b8d8 28%, #93cfa0 55%, #b9a3e3 82%, #9a86d6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .title-lockup .t-a { font-size: 0.52em; font-style: italic; }
+    .title-lockup .t-q { margin: 0.04em 0 0.04em 0; }
+    .title-lockup .t-q svg, .title-lockup .t-q img { height: 1.65em; width: auto; display: block; overflow: visible; }
+    .title-lockup .t-ui { font-size: 0.54em; margin-left: 2.5em; }
+
+    /* ---- Small screens: stack the grids, unspool the reel ---- */
+    @media (max-width: 760px) {
+      .room-01 .room-content > p:first-child { column-count: 1; }
+      .room-01 .room-content { border-left: none; border-top: 3px solid var(--blue); padding-left: 0; padding-top: 26px; }
+      .room-03 .room-strands, .room-06 .room-strands, .room-08 .room-strands { grid-template-columns: 1fr; }
+      .room-10 .room-content { flex-direction: column; overflow-x: visible; padding: 10px 20px 40px; }
+      .room-10 .room-content > p { flex: 1 1 auto; }
+      .room-05 .room-content, .room-09 .room-content, .room-11 .room-content { padding: 32px 26px 36px; }
+    }
   </style>
     <link rel="icon" type="image/png" href="assets/img/hojita-ha-monogram.png">
     <link rel="apple-touch-icon" href="assets/img/hojita-ha-monogram.png">
@@ -1336,23 +1645,20 @@
 
     <header class="hero" id="home">
 
-      <div class="hero-watermark" aria-hidden="true">a<span class="wq">Q</span></div>
 
       <div class="hero-content">
 
         <div class="hero-small">
-          Scholarship · Faith · Presence · Art · Community
+          Scholarship · Faith · Presence · Art · Community · Memory
         </div>
 
-        <h1>
-          <span>aQui</span>
-          <span>con fe</span>
+        <h1 class="title-lockup" aria-label="aQui con fe">
+          <span class="t-a" aria-hidden="true">a</span>
+          <span class="t-q" aria-hidden="true">
+            <img src="q-brush.png" alt="Q">
+          </span>
+          <span class="t-ui" aria-hidden="true">ui con fe</span>
         </h1>
-
-        <p class="hero-subtitle">
-          A living space for scholarship, faith, music, literature,
-          history, memory, and the social arts.
-        </p>
 
         <p class="hero-motto">
           Here, with me.
@@ -1388,13 +1694,13 @@
 
       <div class="marquee-inner">
 
-        scholarship · faith · music · literature · history ·
-        memory · community · social arts · scholarship · faith ·
-        music · literature · history · memory · community · social arts ·
+        scholarship · faith · music · literature ·
+        memory · community · scholarship · faith ·
+        music · literature · memory · community ·
 
-        scholarship · faith · music · literature · history ·
-        memory · community · social arts · scholarship · faith ·
-        music · literature · history · memory · community · social arts ·
+        scholarship · faith · music · literature ·
+        memory · community · scholarship · faith ·
+        music · literature · memory · community ·
 
       </div>
 
@@ -1438,7 +1744,7 @@
             <span class="envivo-date">Sep 30, 2026</span>
             <p>
               aquiconfe.org launched: a living space for scholarship,
-              faith, music, literature, history, and the social arts.
+              faith, music, literature, and memory.
             </p>
           </article>
 
@@ -1493,7 +1799,7 @@
 
           <!-- ROOM 01 -->
 
-          <article class="room">
+          <article class="room room-01">
 
             <button class="room-button" type="button">
 
@@ -1536,7 +1842,7 @@
 
           <!-- ROOM 02 -->
 
-          <article class="room">
+          <article class="room room-02">
 
             <button class="room-button" type="button">
 
@@ -1578,7 +1884,7 @@
 
           <!-- ROOM 03 -->
 
-          <article class="room">
+          <article class="room room-03">
 
             <button class="room-button" type="button">
 
@@ -1631,7 +1937,7 @@
 
           <!-- ROOM 04 -->
 
-          <article class="room">
+          <article class="room room-04">
 
             <button class="room-button" type="button">
 
@@ -1689,7 +1995,7 @@
 
           <!-- ROOM 05 -->
 
-          <article class="room">
+          <article class="room room-05">
 
             <button class="room-button" type="button">
 
@@ -1730,7 +2036,7 @@
 
           <!-- ROOM 06 -->
 
-          <article class="room">
+          <article class="room room-06">
 
             <button class="room-button" type="button">
 
@@ -1776,7 +2082,7 @@
 
           <!-- ROOM 07 -->
 
-          <article class="room">
+          <article class="room room-07">
 
             <button class="room-button" type="button">
 
@@ -1817,7 +2123,7 @@
 
           <!-- ROOM 08 -->
 
-          <article class="room">
+          <article class="room room-08">
 
             <button class="room-button" type="button">
 
@@ -1863,7 +2169,7 @@
 
           <!-- SPECIAL ROOM -->
 
-          <article class="room">
+          <article class="room room-09">
 
             <button class="room-button" type="button">
 
@@ -1940,7 +2246,7 @@
 
           <!-- VISUAL DIARY -->
 
-          <article class="room">
+          <article class="room room-10">
 
             <button class="room-button" type="button">
 
@@ -1981,7 +2287,7 @@
 
           <!-- COME FOR ME -->
 
-          <article class="room">
+          <article class="room room-11">
 
             <button class="room-button" type="button">
 
@@ -2137,8 +2443,9 @@
         </h2>
 
         <p class="intro">
-          Every two weeks, a new chapter of an ongoing story —
-          yours to read with a small subscription.
+          A chapter of a serial novel every month, two poems
+          every month, and a section of a short story every two
+          months — yours to read with a small subscription.
         </p>
 
 
@@ -2159,8 +2466,16 @@
 
               <p>
                 A short novella by F. Cruz Escalante.
-                Where the story begins — the opening
-                chapter is forthcoming.
+                No Shave November follows the complications
+                and consequences that follow death and
+                catastrophe — and love's attempt at
+                transformation in the face of impossible odds.
+                When the razor is set down and November turns
+                cold, something in the house stops pretending
+                to be alive, and every room begins to keep its
+                own account of the missing. Some doors, once
+                opened, do not close again.
+                The opening chapter is forthcoming.
               </p>
 
             </div>
@@ -2177,16 +2492,16 @@
             <div>
 
               <div class="project-label">
-                Every two weeks
+                Every month
               </div>
 
               <h3>
-                The story continues
+                The novel continues
               </h3>
 
               <p>
-                A new chapter twice a month, as long as
-                the story has somewhere to go.
+                A new chapter of the serial novel each month,
+                as long as the story has somewhere to go.
               </p>
 
             </div>
@@ -2198,15 +2513,68 @@
           </article>
 
 
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Two a month
+              </div>
+
+              <h3>
+                The poems arrive
+              </h3>
+
+              <p>
+                Two new poems every month — language distilled
+                until it burns. The first is already here.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              <a href="the-green-clock.html">Read “The Green Clock” →</a>
+            </div>
+
+          </article>
+
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                Every two months
+              </div>
+
+              <h3>
+                The story, in sections
+              </h3>
+
+              <p>
+                A section of a short story every two months —
+                longer roads, walked slowly.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              Sections coming soon →
+            </div>
+
+          </article>
+
+
         </div>
 
 
         <div class="subscribe-box" style="max-width: 850px; margin-top: 45px;">
 
           <p>
-            Chapters are included with a small monthly subscription —
-            stories, videos, and photos, with deeper access at
-            higher tiers. Subscribe under coMe for Me.
+            Chapters, poems, and story sections are included with
+            a small monthly subscription — stories, videos, and
+            photos, with deeper access at higher tiers. Subscribe
+            under coMe for Me.
           </p>
 
           <span class="button subscribe-soon">
@@ -2381,8 +2749,17 @@
               </h3>
 
               <p>
-                A short novella by F. Cruz Escalante.
-                The first chapter arrives soon in the Serial.
+                A short novella by F. Cruz Escalante —
+                No Shave November follows the complications
+                and consequences that follow death and
+                catastrophe, and love's attempt at
+                transformation in the face of impossible odds.
+                When the razor is set down and November turns
+                cold, something in the house stops pretending
+                to be alive, and every room begins to keep its
+                own account of the missing. Some doors,
+                once opened, do not close again. The first chapter
+                arrives soon in the Serial.
               </p>
 
             </div>
@@ -2532,9 +2909,13 @@
 
               <p>
                 Creative projects are developed in the aQui con fe
-                Studio — a private workspace for questions, materials,
-                and rooms — and published to this site for the world
-                to read.
+                Studio — a private constellation where every question
+                sits at the center, orbited by eight axes: Fe, Aquí,
+                Memoria, Letras, Sonido, Arte, Estudio, Creación.
+                Materials, journal entries, references, and room
+                pieces all link back to the questions that made
+                them — and the public constellation lets you wander
+                whatever the Studio chooses to share.
               </p>
 
             </div>
@@ -2542,6 +2923,42 @@
             <div class="project-link">
               <a href="https://ferncruzesc.pythonanywhere.com/constellation/">
                 Visit the public constellation →
+              </a>
+            </div>
+
+          </article>
+
+
+          <!-- PROJECT FOUR -->
+
+          <article class="project">
+
+            <div>
+
+              <div class="project-label">
+                The writing desk
+              </div>
+
+              <h3>
+                What the Studio
+                <br>
+                is making.
+              </h3>
+
+              <p>
+                Behind the scenes, the Studio keeps a desk for every
+                form: a chapter of the serial novel every month, two
+                poems every month, a section of a short story every
+                two months — plus voice pieces, a monthly newsletter,
+                and the three rooms (OMG! moments, the video diary,
+                coMe for Me), all built in private and published here.
+              </p>
+
+            </div>
+
+            <div class="project-link">
+              <a href="#serial">
+                See the rhythm →
               </a>
             </div>
 
@@ -2994,8 +3411,8 @@
 
           <p class="footer-subtitle">
             A living space for scholarship, faith,
-            music, literature, history, memory,
-            art, and community.
+            music, literature, memory,
+            and art.
           </p>
 
         </div>
