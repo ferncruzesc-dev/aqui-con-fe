@@ -170,18 +170,25 @@
       padding: 100px 20px;
       position: relative;
       overflow: hidden;
+      background:
+        radial-gradient(640px 440px at 15% 20%, rgba(137, 184, 216, 0.28), transparent 62%),
+        radial-gradient(720px 520px at 88% 16%, rgba(185, 163, 227, 0.26), transparent 62%),
+        radial-gradient(680px 500px at 72% 88%, rgba(147, 207, 160, 0.26), transparent 62%),
+        radial-gradient(520px 400px at 8% 82%, rgba(137, 184, 216, 0.18), transparent 62%),
+        var(--bg);
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      width: 620px;
-      height: 620px;
-      border: 1px solid rgba(140, 123, 99, 0.18);
+      width: 560px;
+      height: 560px;
       border-radius: 50%;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(137, 184, 216, 0.22), transparent 65%);
+      filter: blur(12px);
       pointer-events: none;
     }
 
@@ -191,7 +198,7 @@
       font-size: 32vw;
       font-weight: 300;
       line-height: 1;
-      color: rgba(140, 123, 99, 0.05);
+      color: rgba(150, 140, 200, 0.07);
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -202,7 +209,10 @@
     .hero-watermark .wq {
       font-style: italic;
       font-size: 1.18em;
-      color: rgba(140, 123, 99, 0.11);
+      background: linear-gradient(135deg, rgba(137, 184, 216, 0.28), rgba(185, 163, 227, 0.28));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero-content {
@@ -214,8 +224,45 @@
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      color: var(--muted);
+      color: #6b7fa8;
       margin-bottom: 35px;
+    }
+
+    .hero .button.filled {
+      background: linear-gradient(112deg, #89b8d8, #b9a3e3);
+      border-color: transparent;
+      color: #232a3a;
+    }
+
+    .hero .button.filled:hover {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--text);
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 38px;
+    }
+
+    .hero-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .hero-dots span:nth-child(1) {
+      background: #89b8d8;
+    }
+
+    .hero-dots span:nth-child(2) {
+      background: #93cfa0;
+    }
+
+    .hero-dots span:nth-child(3) {
+      background: #b9a3e3;
     }
 
     .hero h1 {
@@ -224,6 +271,10 @@
       font-weight: 300;
       line-height: 0.76;
       letter-spacing: -0.065em;
+      background: linear-gradient(112deg, #6d9dc4 0%, #89b8d8 28%, #93cfa0 55%, #b9a3e3 82%, #9a86d6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero h1 span {
@@ -1248,6 +1299,10 @@
             Explore the archive
           </a>
 
+        </div>
+
+        <div class="hero-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
         </div>
 
       </div>
