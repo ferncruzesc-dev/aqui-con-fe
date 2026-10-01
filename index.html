@@ -555,6 +555,12 @@
       color: var(--muted);
     }
 
+    .room .room-content {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
     .room.active .room-content {
       display: block;
     }
@@ -940,29 +946,6 @@
       max-width: 720px;
     }
 
-    .journal-voice {
-      margin-top: 70px;
-      padding-top: 50px;
-      border-top: 1px solid var(--line);
-    }
-
-    .journal-subhead {
-      font-family: var(--serif);
-      font-size: 38px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin: 0 0 12px 0;
-    }
-
-    .journal-voice-intro {
-      font-family: var(--serif);
-      font-size: 20px;
-      line-height: 1.5;
-      color: var(--muted);
-      max-width: 700px;
-      margin: 0 0 35px 0;
-    }
-
     /* =====================================================
        FUTURE HUBS
        ===================================================== */
@@ -1055,6 +1038,18 @@
       font-size: 52px;
       font-weight: 300;
       line-height: 1;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      width: 58px;
+      height: auto;
+      flex: none;
     }
 
     .footer-subtitle {
@@ -1785,7 +1780,7 @@
         </div>
 
         <h2 class="section-title">
-          Come inside.
+          coMe inside.
         </h2>
 
         <p class="intro">
@@ -3321,27 +3316,41 @@
 
 
 
-        <div class="journal-voice">
-
-          <h3 class="journal-subhead">
-            Voice
-          </h3>
-
-          <p class="journal-voice-intro">
-            The spoken word now has a room of its own —
-            readings, conversations, interviews, audio notes,
-            and a podcast in development. The house, out loud.
-          </p>
-
-          <div class="buttons" style="justify-content:center;">
-
-            <a href="voice.html" class="button filled">
-              Step into Voice &rarr;
-            </a>
-
-          </div>
-
         </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         VOICE
+         ===================================================== -->
+
+
+    <section id="voice">
+
+      <div class="container">
+
+        <div class="section-label">
+          11 / Voice
+        </div>
+
+        <h2 class="section-title">
+          The house, out loud.
+        </h2>
+
+        <p class="intro">
+          The spoken word now has a room of its own —
+          readings, conversations, interviews, audio notes,
+          and a podcast in development.
+        </p>
+
+        <div class="buttons" style="justify-content:center;">
+
+          <a href="voice.html" class="button filled">
+            Step into Voice &rarr;
+          </a>
 
         </div>
 
@@ -3360,7 +3369,7 @@
       <div class="container">
 
         <div class="section-label">
-          11 / Participate
+          12 / Participate
         </div>
 
         <h2 class="section-title">
@@ -3423,9 +3432,15 @@
 
         <div>
 
-          <div class="footer-title">
-            aQui<br>
-            <em>con fe</em>
+          <div class="footer-brand">
+
+            <img src="assets/img/hojita-enso-logo.png" alt="Hojita de Agua" class="footer-logo">
+
+            <div class="footer-title">
+              aQui<br>
+              <em>con fe</em>
+            </div>
+
           </div>
 
           <p class="footer-subtitle">
