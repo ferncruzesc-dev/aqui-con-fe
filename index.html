@@ -441,6 +441,106 @@
       transform: rotate(45deg);
     }
 
+    .room-content .omg-creed {
+      font-style: italic;
+    }
+
+    .room-content .omg-heading {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-dark);
+      margin: 34px 0 16px 0;
+      font-weight: 600;
+    }
+
+    .room-content .omg-flow {
+      list-style: none;
+      margin: 0 0 8px 0;
+      padding: 0;
+    }
+
+    .room-content .omg-flow li {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .room-content .omg-flow li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-content .omg-step {
+      font-family: var(--mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      padding-top: 4px;
+    }
+
+    .room-content .omg-modes {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .room-content .omg-modes li {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--muted);
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .room-content .omg-modes li:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .room-content .omg-modes strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .envivo-feed {
+      margin-top: 45px;
+      max-width: 850px;
+    }
+
+    .envivo-entry {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .envivo-entry:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .envivo-date {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      margin-bottom: 12px;
+    }
+
+    .envivo-entry p {
+      font-family: var(--serif);
+      font-size: 23px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
     /* =====================================================
        ROOM DIRECTORY
        ===================================================== */
@@ -876,6 +976,15 @@
         font-size: 20px;
       }
 
+      .room-content .omg-flow li {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .envivo-entry p {
+        font-size: 20px;
+      }
+
       .room-directory {
         grid-template-columns: 1fr;
       }
@@ -969,6 +1078,7 @@
       <div class="nav-links" id="navLinks">
 
         <a href="#about">About</a>
+        <a href="#envivo">En vivo</a>
         <a href="#rooms">Rooms</a>
         <a href="#projects">Projects</a>
         <a href="#archive">Archive</a>
@@ -1047,6 +1157,53 @@
       </div>
 
     </div>
+
+
+    <!-- =====================================================
+         EN VIVO
+         ===================================================== -->
+
+    <section id="envivo">
+
+      <div class="container">
+
+        <div class="section-label">
+          En vivo
+        </div>
+
+        <h2 class="section-title">
+          !aQui! en vivo
+        </h2>
+
+        <p class="intro">
+          Live updates from the studio and the site —
+          new pieces, new rooms, and new questions, as they happen.
+        </p>
+
+        <div class="envivo-feed">
+
+          <article class="envivo-entry">
+            <span class="envivo-date">Sep 30, 2026</span>
+            <p>
+              The aQui con fe Studio went live — a private constellation
+              for questions, projects, and rooms, with a public face
+              for the world to read.
+            </p>
+          </article>
+
+          <article class="envivo-entry">
+            <span class="envivo-date">Sep 30, 2026</span>
+            <p>
+              aquiconfe.org launched: a living space for scholarship,
+              faith, music, literature, history, and the social arts.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
     <!-- =====================================================
@@ -1388,6 +1545,41 @@
                 connections, unexpected questions, and things
                 worth saying — wait, look at this.
               </p>
+
+              <p class="omg-creed">
+                A theology of surprise: every piece begins with a jolt —
+                laughter, grief, awe — treated as theological data,
+                not interruption.
+              </p>
+
+              <h4 class="omg-heading">How a piece is made</h4>
+
+              <ol class="omg-flow">
+                <li>
+                  <span class="omg-step">Spark</span>
+                  <span>The jolt. Something funny, devastating, or luminous happens — and instead of walking past it, you stop.</span>
+                </li>
+                <li>
+                  <span class="omg-step">Witness</span>
+                  <span>You sit with the moment and ask: <em>What is the moment? Why does it make me laugh-ache? Where is God sitting at the table in this one?</em></span>
+                </li>
+                <li>
+                  <span class="omg-step">Craft</span>
+                  <span>The moment is shaped through word, sound, and image — <em>letras, sonido, arte</em> — until it can carry weight.</span>
+                </li>
+                <li>
+                  <span class="omg-step">Offering</span>
+                  <span>The finished piece is released. What began as a private jolt becomes shared witness.</span>
+                </li>
+              </ol>
+
+              <h4 class="omg-heading">Three modes</h4>
+
+              <ul class="omg-modes">
+                <li><strong>Comedy</strong> — holy and hilarious; laughter as discernment.</li>
+                <li><strong>Tragedy</strong> — lament; faith sitting inside the pain, not above it.</li>
+                <li><strong>Testimony</strong> — witness narratives; true stories, told straight.</li>
+              </ul>
 
             </div>
 
