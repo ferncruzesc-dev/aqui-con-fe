@@ -1224,6 +1224,225 @@
       #community .project { transition: none; }
     }
 
+    /* ---- Journal: the lunchbox ---- */
+    .lunchbox-scene {
+      text-align: center;
+      margin: 44px 0 6px;
+    }
+    .lunchbox {
+      position: relative;
+      width: 240px;
+      height: 178px;
+      margin: 64px auto 0;
+      perspective: 900px;
+      cursor: pointer;
+      outline: none;
+    }
+    .lunchbox:focus-visible {
+      filter: drop-shadow(0 0 10px rgba(137, 184, 216, 0.9));
+    }
+    /* Gently rocking, waiting to be opened */
+    .lunchbox:not(.open) {
+      animation: lunchRock 3.4s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+    @keyframes lunchRock {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(1.5deg); }
+      75% { transform: rotate(-1.5deg); }
+    }
+
+    /* Lid (hinged at the back edge) */
+    .lb-lid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 48px;
+      z-index: 4;
+      background: linear-gradient(180deg, #fbf7ec 0%, #f1e9d4 100%);
+      border: 2px solid #e2d6b8;
+      border-radius: 20px 20px 9px 9px;
+      box-shadow: 0 3px 8px rgba(120, 100, 70, 0.18);
+      transform-origin: center top;
+      transition: transform 0.8s cubic-bezier(0.4, 0.1, 0.3, 1) 0.15s;
+    }
+    .lunchbox.open .lb-lid {
+      transform: rotateX(-72deg);
+    }
+    /* Handle rides on the lid */
+    .lb-handle {
+      position: absolute;
+      left: 50%;
+      bottom: 100%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 30px;
+      margin-bottom: -5px;
+      border: 9px solid #7ba7cc;
+      border-bottom: none;
+      border-radius: 48px 48px 0 0;
+    }
+    /* Latch */
+    .lb-latch {
+      position: absolute;
+      left: 50%;
+      top: 26px;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 42px;
+      z-index: 5;
+      background: linear-gradient(180deg, #eec964 0%, #c9a24a 100%);
+      border: 2px solid #a37f34;
+      border-radius: 7px;
+      box-shadow: 0 2px 5px rgba(120, 95, 40, 0.35);
+      transition: transform 0.3s ease;
+    }
+    .lb-latch::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 9px;
+      transform: translateX(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #6e5623;
+    }
+    .lunchbox.open .lb-latch {
+      transform: translateX(-50%) scale(0.88);
+    }
+
+    /* Box body (front face) */
+    .lb-body {
+      position: absolute;
+      top: 42px;
+      left: 0;
+      width: 100%;
+      height: 136px;
+      z-index: 3;
+      background: linear-gradient(180deg, #a9cbe4 0%, #8fb4d6 100%);
+      border: 2px solid #6f9cc4;
+      border-radius: 9px 9px 22px 22px;
+      box-shadow: 0 14px 28px -12px rgba(90, 120, 150, 0.55);
+    }
+    .lb-sticker {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-6deg);
+      background: #fffdf6;
+      border: 2px solid var(--purple);
+      color: var(--purple-deep);
+      font-style: italic;
+      font-size: 16px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      box-shadow: 0 2px 6px rgba(120, 100, 140, 0.25);
+      white-space: nowrap;
+    }
+
+    /* The treasures inside */
+    .lb-items {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .lb-journal {
+      position: absolute;
+      left: 36px;
+      bottom: 16px;
+      width: 96px;
+      height: 128px;
+      background: #f8f3e6;
+      border: 1px solid #d9cfae;
+      border-radius: 5px;
+      box-shadow: 0 6px 14px rgba(90, 80, 60, 0.3);
+      overflow: hidden;
+      transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.3, 1) 0.55s;
+    }
+    .lb-journal::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 14px;
+      background: linear-gradient(90deg, var(--purple), #a58bd6);
+    }
+    .lb-journal::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 10px;
+      top: 14px;
+      bottom: 12px;
+      background: repeating-linear-gradient(180deg,
+        transparent 0 9px,
+        rgba(95, 115, 145, 0.4) 9px 10px);
+    }
+    .lunchbox.open .lb-journal {
+      transform: translateY(-86px) rotate(6deg);
+    }
+    .lb-pencil {
+      position: absolute;
+      right: 50px;
+      bottom: 16px;
+      width: 16px;
+      transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.3, 1) 0.8s;
+      filter: drop-shadow(0 4px 5px rgba(90, 80, 60, 0.3));
+    }
+    .lb-pencil span { display: block; margin: 0 auto; }
+    .lb-lead {
+      width: 10px;
+      height: 12px;
+      background: #3d3d3d;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+    .lb-wood {
+      width: 16px;
+      height: 20px;
+      margin-top: -2px;
+      background: #eac892;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    }
+    .lb-pbody {
+      width: 16px;
+      height: 92px;
+      margin-top: -2px;
+      background: linear-gradient(90deg, #df9f27 0%, #f7c948 45%, #df9f27 100%);
+      border-radius: 2px;
+    }
+    .lb-ferrule {
+      width: 16px;
+      height: 12px;
+      background: repeating-linear-gradient(90deg, #bcc3ca 0 2px, #8f979e 2px 4px);
+    }
+    .lb-eraser {
+      width: 14px;
+      height: 13px;
+      background: #f0a3a3;
+      border-radius: 7px 7px 3px 3px;
+    }
+    .lunchbox.open .lb-pencil {
+      transform: translateY(-78px) rotate(-8deg);
+    }
+
+    .lunchbox-caption {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 14px;
+      margin: 16px 0 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lunchbox, .lunchbox *, .lb-lid, .lb-journal, .lb-pencil, .lb-latch {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     .room-content .omg-creed {
       font-style: italic;
     }
@@ -4139,6 +4358,36 @@
         </p>
 
 
+        <div class="lunchbox-scene">
+
+          <div class="lunchbox" id="lunchbox" role="button" tabindex="0"
+               aria-label="Tap to open or close the lunchbox">
+
+            <div class="lb-lid">
+              <div class="lb-handle"></div>
+              <div class="lb-latch"></div>
+            </div>
+
+            <div class="lb-items">
+              <div class="lb-journal"></div>
+              <div class="lb-pencil">
+                <span class="lb-lead"></span><span class="lb-wood"></span><span class="lb-pbody"></span><span class="lb-ferrule"></span><span class="lb-eraser"></span>
+              </div>
+            </div>
+
+            <div class="lb-body">
+              <span class="lb-sticker">¡aMa!</span>
+            </div>
+
+          </div>
+
+          <p class="lunchbox-caption">
+            Tap the lunchbox.
+          </p>
+
+        </div>
+
+
         <div class="journal-feature">
 
           <div class="journal-feature-label">
@@ -5067,6 +5316,56 @@
           }
         });
       });
+
+    })();
+
+
+    /* -----------------------------------------------
+       JOURNAL: the lunchbox opens, journal and pencil
+       emerge
+       ----------------------------------------------- */
+
+    (function () {
+
+      var box = document.getElementById("lunchbox");
+      if (!box) return;
+
+      function toggle() {
+        box.classList.toggle("open");
+        box.setAttribute(
+          "aria-label",
+          box.classList.contains("open")
+            ? "Tap to close the lunchbox"
+            : "Tap to open the lunchbox"
+        );
+      }
+
+      box.addEventListener("click", toggle);
+      box.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      });
+
+      /* Opens on its own the first time you arrive */
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                box.classList.add("open");
+                box.setAttribute("aria-label", "Tap to close the lunchbox");
+                io.disconnect();
+              }
+            });
+          },
+          { threshold: 0.45 }
+        );
+        io.observe(box);
+      } else {
+        box.classList.add("open");
+      }
 
     })();
 
