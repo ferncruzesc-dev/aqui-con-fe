@@ -1719,6 +1719,163 @@
       #archive .archive-item.flash { animation: none; }
     }
 
+    /* ---- Newsletter: wind and the tornado storm ---- */
+    #newsletter { position: relative; overflow: hidden; }
+
+    .storm-wrap {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 2;
+      margin-top: 14px;
+    }
+    #newsletter .subscribe-box { flex: 1 1 400px; }
+
+    .storm-scene {
+      flex: 0 0 260px;
+      text-align: center;
+      position: relative;
+      height: 400px;
+    }
+    .storm { position: relative; height: 360px; cursor: pointer; outline: none; }
+    .storm:focus-visible { box-shadow: 0 0 0 4px rgba(137, 184, 216, 0.7); border-radius: 12px; }
+
+    .storm-cloud {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 62px;
+      background: #93a0ae;
+      border-radius: 60px;
+      opacity: 0.92;
+      animation: cloudBob 6s ease-in-out infinite;
+      transition: background 0.8s ease;
+    }
+    .storm-cloud::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      top: -26px;
+      height: 48px;
+      background:
+        radial-gradient(28px circle at 34px 34px, #93a0ae 96%, transparent 100%),
+        radial-gradient(38px circle at 92px 28px, #a3aeb9 96%, transparent 100%),
+        radial-gradient(30px circle at 152px 32px, #93a0ae 96%, transparent 100%);
+      transition: opacity 0.8s ease;
+    }
+
+    .tornado {
+      position: absolute;
+      top: 62px;
+      left: 50%;
+      width: 220px;
+      height: 300px;
+      transform: translateX(-50%);
+      animation: funnelSway 5s ease-in-out infinite;
+    }
+    @keyframes funnelSway {
+      0%, 100% { transform: translateX(-50%) skewX(-3deg); }
+      50% { transform: translateX(-46%) skewX(3deg); }
+    }
+    .tornado i {
+      position: absolute;
+      left: 50%;
+      display: block;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center,
+        rgba(150, 164, 182, 0.30) 0%,
+        rgba(122, 137, 156, 0.52) 100%);
+      animation: funnelPulse var(--funnel-speed, 2.2s) ease-in-out infinite;
+    }
+    @keyframes funnelPulse {
+      0%, 100% { transform: translateX(-50%) scaleX(1) rotate(-2deg); }
+      50% { transform: translateX(-50%) scaleX(1.28) rotate(2deg); }
+    }
+    .funnel-shadow {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(90,100,115,.35), transparent 70%);
+    }
+    .storm-caption {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 14px;
+      margin: 6px 0 0;
+    }
+
+    /* Debris orbiting the funnel */
+    .debris {
+      position: absolute;
+      border-radius: 2px;
+      background: #a8b1ba;
+      pointer-events: none;
+      animation: debrisOrbit var(--debris-speed, 3s) linear infinite;
+    }
+    .debris:nth-of-type(3n) { background: #ffffff; border: 1px solid #d8d4c8; }
+    @keyframes debrisOrbit {
+      from { transform: rotate(0deg) translateX(var(--r, 70px)) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(var(--r, 70px)) rotate(-360deg); }
+    }
+
+    /* Wind streaks blowing across the section */
+    .wind-streak {
+      position: absolute;
+      left: 0;
+      height: 3px;
+      border-radius: 3px;
+      pointer-events: none;
+      z-index: 1;
+      background: linear-gradient(90deg, transparent, rgba(137, 184, 216, 0.65), transparent);
+      animation: windBlow var(--wind-speed, 2.4s) linear infinite;
+    }
+    .wind-letter-wrap {
+      position: absolute;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+      animation: windBlow var(--wind-speed, 3.2s) linear infinite;
+    }
+    .wind-letter {
+      display: block;
+      width: 26px;
+      height: 18px;
+      background: #ffffff;
+      border: 1px solid #d8d4c8;
+      border-radius: 2px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      animation: tumble 1.1s linear infinite;
+    }
+    @keyframes windBlow {
+      from { transform: translateX(-20vw); }
+      to { transform: translateX(120vw); }
+    }
+    @keyframes tumble { to { transform: rotate(360deg); } }
+
+    /* The storm rages when tapped */
+    #newsletter.raging .wind-streak,
+    #newsletter.raging .wind-letter-wrap { --wind-speed: 0.85s !important; }
+    #newsletter.raging .debris { --debris-speed: 0.9s !important; }
+    #newsletter.raging .tornado i { --funnel-speed: 0.55s !important; }
+    #newsletter.raging .tornado { animation-duration: 1.4s; }
+    #newsletter.raging .storm-cloud { background: #6e7a88; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .storm-cloud, .tornado, .tornado i, .debris,
+      .wind-streak, .wind-letter-wrap, .wind-letter { animation: none !important; }
+      .wind-streak, .wind-letter-wrap, .debris { display: none; }
+    }
+
     .room-content .omg-creed {
       font-style: italic;
     }
@@ -4600,16 +4757,30 @@
           delivered once a month, never more.
         </p>
 
-        <div class="subscribe-box" style="max-width: 850px;">
+        <div class="storm-wrap">
 
-          <p>
-            The first letter is being written.
-            Leave the door open — email signup opens soon.
-          </p>
+          <div class="subscribe-box" style="max-width: 850px;">
 
-          <span class="button subscribe-soon">
-            Subscribe — coming soon
-          </span>
+            <p>
+              The first letter is being written.
+              Leave the door open — email signup opens soon.
+            </p>
+
+            <span class="button subscribe-soon">
+              Subscribe — coming soon
+            </span>
+
+          </div>
+
+          <div class="storm-scene">
+            <div class="storm" id="stormBtn" role="button" tabindex="0"
+                 aria-label="Stir up the storm">
+              <div class="storm-cloud"></div>
+              <div class="tornado" id="tornado"></div>
+              <div class="funnel-shadow"></div>
+            </div>
+            <p class="storm-caption">Tap the storm.</p>
+          </div>
 
         </div>
 
@@ -5796,6 +5967,107 @@
           });
         });
       });
+
+    })();
+
+
+    /* -----------------------------------------------
+       NEWSLETTER: wind and the tornado storm
+       ----------------------------------------------- */
+
+    (function () {
+
+      var section = document.getElementById("newsletter");
+      if (!section) return;
+
+      /* Wind streaks blowing across the section */
+      for (var i = 0; i < 16; i++) {
+        var w = document.createElement("span");
+        w.className = "wind-streak";
+        w.setAttribute("aria-hidden", "true");
+        w.style.top = (Math.random() * 100).toFixed(1) + "%";
+        w.style.width = (90 + Math.random() * 220).toFixed(0) + "px";
+        w.style.setProperty(
+          "--wind-speed", (1.4 + Math.random() * 2.4).toFixed(1) + "s"
+        );
+        w.style.animationDelay = (-Math.random() * 4).toFixed(1) + "s";
+        section.appendChild(w);
+      }
+
+      /* Letters tumbling in the wind */
+      for (var l = 0; l < 5; l++) {
+        var wrap = document.createElement("span");
+        wrap.className = "wind-letter-wrap";
+        wrap.setAttribute("aria-hidden", "true");
+        wrap.style.top = (8 + Math.random() * 78).toFixed(1) + "%";
+        wrap.style.setProperty(
+          "--wind-speed", (2.6 + Math.random() * 2.4).toFixed(1) + "s"
+        );
+        wrap.style.animationDelay = (-Math.random() * 5).toFixed(1) + "s";
+        var letter = document.createElement("span");
+        letter.className = "wind-letter";
+        letter.style.animationDuration =
+          (0.9 + Math.random() * 0.8).toFixed(2) + "s";
+        wrap.appendChild(letter);
+        section.appendChild(wrap);
+      }
+
+      /* The funnel: stacked rings, wide at top, narrow below */
+      var tornado = document.getElementById("tornado");
+      if (tornado) {
+        for (var r = 0; r < 14; r++) {
+          var ring = document.createElement("i");
+          ring.setAttribute("aria-hidden", "true");
+          var rw = 205 - r * 13;
+          ring.style.width = rw.toFixed(0) + "px";
+          ring.style.height = (rw * 0.30).toFixed(0) + "px";
+          ring.style.top = (r * 21).toFixed(0) + "px";
+          ring.style.animationDelay = (-r * 0.16).toFixed(2) + "s";
+          tornado.appendChild(ring);
+        }
+      }
+
+      /* Debris orbiting the funnel */
+      var scene = section.querySelector(".storm-scene");
+      if (scene) {
+        for (var d = 0; d < 16; d++) {
+          var db = document.createElement("span");
+          db.className = "debris";
+          db.setAttribute("aria-hidden", "true");
+          var band = d / 16;
+          db.style.top = (70 + band * 260).toFixed(0) + "px";
+          db.style.left = "50%";
+          db.style.setProperty("--r", (95 - band * 55).toFixed(0) + "px");
+          db.style.setProperty(
+            "--debris-speed",
+            (3.4 - band * 1.8 + Math.random() * 0.8).toFixed(2) + "s"
+          );
+          db.style.animationDelay = (-Math.random() * 3).toFixed(1) + "s";
+          var ds = 4 + Math.random() * 5;
+          db.style.width = ds.toFixed(0) + "px";
+          db.style.height = (ds * 0.7).toFixed(0) + "px";
+          scene.appendChild(db);
+        }
+      }
+
+      /* Tap the storm: it rages for a few seconds */
+      function rage() {
+        if (section.classList.contains("raging")) return;
+        section.classList.add("raging");
+        setTimeout(function () {
+          section.classList.remove("raging");
+        }, 3200);
+      }
+      var stormBtn = document.getElementById("stormBtn");
+      if (stormBtn) {
+        stormBtn.addEventListener("click", rage);
+        stormBtn.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            rage();
+          }
+        });
+      }
 
     })();
 
