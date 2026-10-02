@@ -893,6 +893,184 @@
       #serial .project { transition: none; }
     }
 
+    /* ---- Works: the works shelf ---- */
+    #works { position: relative; overflow: hidden; }
+    #works .container { position: relative; z-index: 1; }
+
+    /* The seal, more prominent: larger, ringed, gently floating */
+    #works .section-seal {
+      width: 96px;
+      height: 96px;
+      margin: 26px auto 0;
+      box-shadow:
+        0 0 0 3px var(--bg),
+        0 0 0 5px rgba(137, 184, 216, 0.65),
+        0 16px 34px -12px rgba(90, 80, 110, 0.55);
+      animation: sealFloat 5s ease-in-out infinite;
+    }
+
+    /* The shelf planks the books sit on */
+    #works .project-grid {
+      position: relative;
+      padding-bottom: 24px;
+    }
+    #works .project-grid::after {
+      content: "";
+      position: absolute;
+      left: -2%;
+      right: -2%;
+      bottom: 2px;
+      height: 14px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, #d9b98f 0%, #bd9668 55%, #a37f52 100%);
+      box-shadow: 0 12px 26px -10px rgba(110, 82, 50, 0.55);
+      pointer-events: none;
+    }
+
+    /* Books on the shelf */
+    #works .project {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.3, 1),
+                  box-shadow 0.5s ease;
+    }
+    /* Book spine along the left edge */
+    #works .project::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 10px;
+      background: linear-gradient(90deg, rgba(60, 45, 30, 0.22), transparent);
+      pointer-events: none;
+    }
+    #works .project:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 48px -20px rgba(80, 70, 100, 0.45);
+      z-index: 3;
+    }
+    /* Touch a book: each story answers with its own animation */
+    #works .project[class*="story-anim-"] { z-index: 4; }
+
+    /* 0 — No Shave November: a shiver in the November cold */
+    #works .project[data-story="0"].story-anim-0 {
+      animation: winterShiver 1s ease;
+    }
+    @keyframes winterShiver {
+      0%, 100% { transform: translateY(0) rotate(0deg); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+      20% { transform: translateY(-5px) rotate(-1.2deg); box-shadow: 0 0 36px rgba(137,184,216,.6); }
+      40% { transform: translateY(-9px) rotate(1.2deg); box-shadow: 0 0 28px rgba(137,184,216,.45); }
+      60% { transform: translateY(-5px) rotate(-0.8deg); box-shadow: 0 0 36px rgba(137,184,216,.6); }
+      80% { transform: translateY(-9px) rotate(0.8deg); box-shadow: 0 0 28px rgba(137,184,216,.45); }
+    }
+
+    /* 1 — The Curse of the Pearls: light moving across pearls */
+    #works .project[data-story="1"].story-anim-1 {
+      animation: pearlBob 1.1s ease;
+    }
+    @keyframes pearlBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+    #works .project[data-story="1"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(105deg,
+        transparent 42%,
+        rgba(255,255,255,.38) 48%,
+        rgba(244,227,244,.55) 52%,
+        transparent 58%);
+      opacity: 0;
+    }
+    #works .project[data-story="1"].story-anim-1::after {
+      animation: sheenSweep 1.1s ease;
+    }
+    @keyframes sheenSweep {
+      0% { opacity: 0; transform: translateX(-55%); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(55%); }
+    }
+
+    /* 2 — Poesia de Fe: swaying like a song */
+    #works .project[data-story="2"].story-anim-2 {
+      animation: songSway 1.1s ease;
+    }
+    @keyframes songSway {
+      0%, 100% { transform: rotate(0deg) translateY(0); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+      25% { transform: rotate(2deg) translateY(-10px); box-shadow: 0 0 36px rgba(232,199,106,.55); }
+      50% { transform: rotate(0deg) translateY(-17px); box-shadow: 0 0 30px rgba(232,199,106,.4); }
+      75% { transform: rotate(-2deg) translateY(-10px); box-shadow: 0 0 36px rgba(232,199,106,.55); }
+    }
+
+    /* 3 — Essays: a slow ink-dark breath, thinking */
+    #works .project[data-story="3"].story-anim-3 {
+      animation: inkBreathe 1.2s ease;
+    }
+    @keyframes inkBreathe {
+      0%, 100% { transform: scale(1); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+      50% { transform: scale(1.03); box-shadow: 0 0 40px rgba(90,110,160,.5); }
+    }
+
+    /* 4 — Built in the Studio: a constellation turning */
+    #works .project[data-story="4"].story-anim-4 {
+      animation: constellationOrbit 1.2s ease;
+    }
+    @keyframes constellationOrbit {
+      0%, 100% { transform: perspective(1000px) rotateY(0deg) translateY(0); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+      25% { transform: perspective(1000px) rotateY(-10deg) translateY(-12px); box-shadow: 0 0 38px rgba(185,163,227,.6); }
+      50% { transform: perspective(1000px) rotateY(0deg) translateY(-19px); box-shadow: 0 0 30px rgba(185,163,227,.45); }
+      75% { transform: perspective(1000px) rotateY(10deg) translateY(-12px); box-shadow: 0 0 38px rgba(185,163,227,.6); }
+    }
+
+    /* 5 — What the Studio is making: something sprouting */
+    #works .project[data-story="5"].story-anim-5 {
+      animation: sproutUp 1.1s cubic-bezier(0.3, 0.7, 0.3, 1);
+    }
+    @keyframes sproutUp {
+      0% { transform: translateY(0) scale(1); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+      40% { transform: translateY(-24px) scale(1.02); box-shadow: 0 0 38px rgba(147,207,160,.6); }
+      70% { transform: translateY(-9px) scale(1.01); box-shadow: 0 0 28px rgba(147,207,160,.45); }
+      100% { transform: translateY(0) scale(1); box-shadow: 0 28px 48px -20px rgba(80,70,100,.45); }
+    }
+
+    /* Books drift in as you arrive */
+    #works .project.pre-reveal {
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    #works .project.pre-reveal.in-view {
+      opacity: 1;
+    }
+
+    /* Ambient sparkles over the shelf */
+    .works-sparkle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      line-height: 1;
+      animation-name: sparkleDrift;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .works-burst {
+      position: absolute;
+      pointer-events: none;
+      z-index: 6;
+      line-height: 1;
+      animation: sparkleBurst 0.9s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .works-sparkle, .works-burst { display: none; }
+      #works .section-seal { animation: none; }
+      #works .project.pre-reveal { opacity: 1; transform: none; transition: none; }
+      #works .project[class*="story-anim-"] { animation: none; }
+      #works .project { transition: none; }
+    }
+
     .room-content .omg-creed {
       font-style: italic;
     }
@@ -4450,6 +4628,133 @@
             (function () {
               var s = sparkle();
               s.className = "serial-burst";
+              s.style.left = cx.toFixed(0) + "px";
+              s.style.top = cy.toFixed(0) + "px";
+              s.style.fontSize = (9 + Math.random() * 12).toFixed(0) + "px";
+              s.style.color =
+                palette[Math.floor(Math.random() * palette.length)];
+              s.style.setProperty(
+                "--bx",
+                (Math.random() * 160 - 80).toFixed(0) + "px"
+              );
+              s.style.setProperty(
+                "--by",
+                (-30 - Math.random() * 110).toFixed(0) + "px"
+              );
+              s.style.animationDelay = (Math.random() * 0.12).toFixed(2) + "s";
+              section.appendChild(s);
+              setTimeout(function () { s.remove(); }, 1200);
+            })();
+          }
+        });
+      });
+
+    })();
+
+
+    /* -----------------------------------------------
+       WORKS: the works shelf — sparkles, book reveals,
+       and each story with its own animation
+       ----------------------------------------------- */
+
+    (function () {
+
+      var section = document.getElementById("works");
+      if (!section) return;
+
+      var palette = ["#89b8d8", "#93cfa0", "#b9a3e3", "#e8c76a", "#f4e3f4"];
+
+      function sparkle() {
+        var s = document.createElement("span");
+        s.className = "works-sparkle";
+        s.setAttribute("aria-hidden", "true");
+        s.textContent = "\u2726";
+        return s;
+      }
+
+      /* Ambient sparkles drifting over the shelf */
+      for (var i = 0; i < 14; i++) {
+        var sp = sparkle();
+        sp.style.left = (Math.random() * 100).toFixed(2) + "%";
+        sp.style.top = (20 + Math.random() * 75).toFixed(2) + "%";
+        sp.style.fontSize = (10 + Math.random() * 12).toFixed(0) + "px";
+        sp.style.color = palette[i % palette.length];
+        sp.style.setProperty(
+          "--sx",
+          (Math.random() * 70 - 35).toFixed(0) + "px"
+        );
+        sp.style.animationDuration =
+          (8 + Math.random() * 8).toFixed(1) + "s";
+        sp.style.animationDelay =
+          (-Math.random() * 12).toFixed(1) + "s";
+        section.appendChild(sp);
+      }
+
+      /* Books drift in as you arrive */
+      var books = section.querySelectorAll(".project");
+      books.forEach(function (b, i) {
+        b.classList.add("pre-reveal");
+        b.setAttribute("data-story", String(i));
+      });
+
+      function settle(el) {
+        setTimeout(function () {
+          el.classList.remove("pre-reveal", "in-view");
+          el.style.transitionDelay = "";
+        }, 1200);
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                var el = e.target;
+                el.classList.add("in-view");
+                io.unobserve(el);
+                settle(el);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        books.forEach(function (b, i) {
+          b.style.transitionDelay = ((i % 3) * 110) + "ms";
+          io.observe(b);
+        });
+      } else {
+        books.forEach(function (b) {
+          b.classList.add("in-view");
+          settle(b);
+        });
+      }
+
+      /* Touch a book: its own story animates, sparkles burst */
+      books.forEach(function (book) {
+        book.addEventListener("click", function (ev) {
+          var n = book.getAttribute("data-story");
+          var cls = "story-anim-" + n;
+          if (book.classList.contains(cls)) return;
+
+          book.classList.add(cls);
+          book.addEventListener("animationend", function h(e) {
+            if (e.target !== book) return;
+            book.classList.remove(cls);
+            book.removeEventListener("animationend", h);
+          });
+
+          var secRect = section.getBoundingClientRect();
+          var rect = book.getBoundingClientRect();
+          var cx = ev.clientX - secRect.left;
+          var cy = ev.clientY - secRect.top;
+          if (!cx || !cy) {
+            cx = rect.left - secRect.left + rect.width / 2;
+            cy = rect.top - secRect.top + 60;
+          }
+          for (var b = 0; b < 9; b++) {
+            (function () {
+              var s = sparkle();
+              s.className = "works-burst";
               s.style.left = cx.toFixed(0) + "px";
               s.style.top = cy.toFixed(0) + "px";
               s.style.fontSize = (9 + Math.random() * 12).toFixed(0) + "px";
