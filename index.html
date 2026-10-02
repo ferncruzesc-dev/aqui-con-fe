@@ -1224,6 +1224,138 @@
       #community .project { transition: none; }
     }
 
+    /* ---- Community: clouds and a salon ---- */
+    /* Clouds drifting across the sky */
+    .sky-cloud {
+      position: absolute;
+      z-index: 1;
+      pointer-events: none;
+      width: 170px;
+      height: 56px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 60px;
+      opacity: 0.55;
+      filter: blur(1px);
+      animation-name: cloudDrift;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .sky-cloud::before,
+    .sky-cloud::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .sky-cloud::before { width: 68px; height: 68px; top: -32px; left: 28px; }
+    .sky-cloud::after { width: 48px; height: 48px; top: -22px; left: 92px; }
+    @keyframes cloudDrift {
+      from { transform: translateX(-24vw); }
+      to { transform: translateX(122vw); }
+    }
+
+    /* The Commons + Collaborate become clouds */
+    #community .project[data-gather="0"],
+    #community .project[data-gather="1"] {
+      border-radius: 46px;
+      animation: cloudBob 6.5s ease-in-out infinite;
+    }
+    #community .project[data-gather="1"] { animation-delay: -3.2s; }
+    @keyframes cloudBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-11px); }
+    }
+    /* Puffy tops */
+    #community .project[data-gather="0"]::before,
+    #community .project[data-gather="1"]::before {
+      content: "";
+      position: absolute;
+      top: -24px;
+      left: 44px;
+      width: 130px;
+      height: 48px;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 28px 32px, rgba(255,255,255,.96) 22px, transparent 23px),
+        radial-gradient(circle at 65px 24px, rgba(255,255,255,.96) 27px, transparent 28px),
+        radial-gradient(circle at 102px 32px, rgba(255,255,255,.96) 20px, transparent 21px);
+      animation: puffSway 6.5s ease-in-out infinite alternate;
+    }
+    #community .project[data-gather="1"]::before { animation-delay: -3.2s; }
+    @keyframes puffSway {
+      from { transform: translateX(-9px); }
+      to { transform: translateX(9px); }
+    }
+    /* Touch a cloud: it puffs up */
+    #community .project[data-gather="0"].cloud-puff,
+    #community .project[data-gather="1"].cloud-puff {
+      animation: cloudPuff 0.9s cubic-bezier(0.3, 0.7, 0.3, 1);
+    }
+    @keyframes cloudPuff {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.05) translateY(-9px); }
+      70% { transform: scale(0.99); }
+      100% { transform: scale(1); }
+    }
+    .puff-burst {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 6;
+      animation: puffBurst 0.9s ease-out forwards;
+    }
+    @keyframes puffBurst {
+      from { transform: translate(0, 0) scale(0.4); opacity: 0.95; }
+      to { transform: translate(var(--bx, 30px), var(--by, -50px)) scale(1.5); opacity: 0; }
+    }
+
+    /* Gatherings becomes a salon: lamplit and golden */
+    #community .project[data-gather="2"] {
+      border-radius: 20px;
+      animation: salonGlow 5.5s ease-in-out infinite;
+    }
+    @keyframes salonGlow {
+      0%, 100% { box-shadow: 0 0 34px rgba(232,190,106,.30), 0 24px 44px -20px rgba(80,70,100,.40); }
+      50% { box-shadow: 0 0 64px rgba(232,190,106,.55), 0 24px 44px -20px rgba(80,70,100,.40); }
+    }
+    #community .project[data-gather="2"]::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: linear-gradient(105deg,
+        transparent 42%,
+        rgba(255, 236, 190, 0.28) 50%,
+        transparent 58%);
+      background-size: 260% 100%;
+      animation: salonSheen 7s ease-in-out infinite;
+    }
+    @keyframes salonSheen {
+      0%, 100% { background-position: 125% 0; opacity: 0; }
+      50% { background-position: -25% 0; opacity: 1; }
+    }
+    /* Touch the salon: the lamps bloom */
+    #community .project[data-gather="2"].salon-bloom {
+      animation: salonBloom 1s ease;
+    }
+    @keyframes salonBloom {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.035); }
+      100% { transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .sky-cloud, .puff-burst { display: none; }
+      #community .project[data-gather="0"],
+      #community .project[data-gather="1"],
+      #community .project[data-gather="2"],
+      #community .project[data-gather="0"]::before,
+      #community .project[data-gather="1"]::before,
+      #community .project[data-gather="2"]::after { animation: none; }
+    }
+
     /* ---- Journal: the lunchbox ---- */
     .lunchbox-scene {
       text-align: center;
@@ -1441,6 +1573,150 @@
         animation: none !important;
         transition: none !important;
       }
+    }
+
+    /* ---- Archive: the disco ---- */
+    #archive { position: relative; overflow: hidden; }
+    #archive .container { position: relative; z-index: 2; }
+
+    .disco-scene {
+      text-align: center;
+      margin: 34px 0 8px;
+      position: relative;
+      z-index: 2;
+    }
+    .disco-string {
+      width: 2px;
+      height: 52px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(90,90,105,.15), rgba(90,90,105,.55));
+    }
+    .disco-ball {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      outline: none;
+      background:
+        radial-gradient(circle at 50% 42%, transparent 52%, rgba(55,65,85,.38) 100%),
+        repeating-conic-gradient(#d9dfe6 0 15deg, #a6aeb7 15deg 30deg);
+      box-shadow:
+        0 12px 32px rgba(90, 100, 125, 0.4),
+        inset -10px -12px 26px rgba(60, 70, 95, 0.35),
+        inset 6px 8px 18px rgba(255, 255, 255, 0.35);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .disco-ball::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg,
+        transparent 0deg,
+        rgba(255,255,255,.55) 24deg, transparent 70deg,
+        transparent 170deg,
+        rgba(255,255,255,.4) 205deg, transparent 250deg);
+      animation: sheenRotate 7s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes sheenRotate { to { transform: rotate(360deg); } }
+    .disco-ball:hover { transform: scale(1.06); }
+    .disco-ball:focus-visible {
+      box-shadow: 0 0 0 4px rgba(137, 184, 216, 0.7),
+        0 12px 32px rgba(90, 100, 125, 0.4);
+    }
+    /* Spins fast when tapped */
+    .disco-ball.spin-fast::before { animation-duration: 0.9s; }
+    .disco-ball.spin-fast { animation: ballBounce 0.9s cubic-bezier(0.3, 0.7, 0.3, 1); }
+    @keyframes ballBounce {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.12); }
+      70% { transform: scale(0.97); }
+      100% { transform: scale(1); }
+    }
+    .disco-caption {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 14px;
+      margin: 14px 0 0;
+    }
+
+    /* Flashing colored lights */
+    .disco-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(34px);
+      pointer-events: none;
+      z-index: 1;
+      animation: glowFlash 4.5s ease-in-out infinite;
+    }
+    @keyframes glowFlash {
+      0%, 100% { opacity: 0.10; transform: scale(0.9); }
+      50% { opacity: 0.5; transform: scale(1.18); }
+    }
+
+    /* Mirror-ball light spots scattered across the room */
+    .mirror-spot {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 1;
+      animation:
+        spotDrift 10s ease-in-out infinite alternate,
+        spotTwinkle 2.6s ease-in-out infinite;
+    }
+    @keyframes spotDrift {
+      from { transform: translate(0, 0); }
+      to { transform: translate(var(--dx, 42px), var(--dy, 30px)); }
+    }
+    @keyframes spotTwinkle {
+      0%, 100% { opacity: 0.22; }
+      50% { opacity: 0.95; }
+    }
+    .mirror-burst {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffffff 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 6;
+      animation: mirrorBurst 1s ease-out forwards;
+    }
+    @keyframes mirrorBurst {
+      from { transform: translate(0, 0) scale(0.5); opacity: 1; }
+      to { transform: translate(var(--bx, 40px), var(--by, -60px)) scale(1.6); opacity: 0; }
+    }
+
+    /* Archive rows light up under the disco */
+    #archive .archive-item {
+      position: relative;
+      transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+      border-radius: 8px;
+    }
+    #archive .archive-item:hover {
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: -6px 0 0 var(--glow, var(--blue)), 0 10px 26px -14px rgba(90, 90, 120, 0.5);
+    }
+    #archive .archive-item:nth-child(4n+1) { --glow: #89b8d8; }
+    #archive .archive-item:nth-child(4n+2) { --glow: #b9a3e3; }
+    #archive .archive-item:nth-child(4n+3) { --glow: #f0a3c3; }
+    #archive .archive-item:nth-child(4n+4) { --glow: #e8c76a; }
+    #archive .archive-item.flash {
+      animation: rowFlash 0.7s ease;
+    }
+    @keyframes rowFlash {
+      0% { background: rgba(255,255,255,0.9); }
+      100% { background: transparent; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .disco-ball::before, .disco-glow, .mirror-spot, .mirror-burst { animation: none !important; }
+      .disco-glow, .mirror-spot { display: none; }
+      #archive .archive-item { transition: none; }
+      #archive .archive-item.flash { animation: none; }
     }
 
     .room-content .omg-creed {
@@ -4164,6 +4440,14 @@
         </p>
 
 
+        <div class="disco-scene">
+          <div class="disco-string"></div>
+          <div class="disco-ball" id="discoBall" role="button" tabindex="0"
+               aria-label="Spin the disco ball"></div>
+          <p class="disco-caption">Tap the mirror ball.</p>
+        </div>
+
+
         <div class="archive-list">
 
           <a href="#" class="archive-item">
@@ -5239,9 +5523,26 @@
         section.appendChild(pl);
       }
 
+      /* Clouds drifting across the sky */
+      for (var c = 0; c < 3; c++) {
+        var cl = document.createElement("span");
+        cl.className = "sky-cloud";
+        cl.setAttribute("aria-hidden", "true");
+        cl.style.top = (4 + c * 7 + Math.random() * 4).toFixed(2) + "%";
+        var cw = 130 + Math.random() * 90;
+        cl.style.width = cw.toFixed(0) + "px";
+        cl.style.height = (cw * 0.34).toFixed(0) + "px";
+        cl.style.animationDuration = (70 + c * 22 + Math.random() * 15).toFixed(1) + "s";
+        cl.style.animationDelay = (-c * 28 - Math.random() * 20).toFixed(1) + "s";
+        section.appendChild(cl);
+      }
+
       /* Gatherings fade in as you arrive */
       var cards = section.querySelectorAll(".project");
-      cards.forEach(function (c) { c.classList.add("pre-reveal"); });
+      cards.forEach(function (c, i) {
+        c.classList.add("pre-reveal");
+        c.setAttribute("data-gather", String(i));
+      });
 
       function settle(el) {
         setTimeout(function () {
@@ -5278,14 +5579,18 @@
         });
       }
 
-      /* Touch a gathering: it bounces, leaves burst */
+      /* Touch a gathering: clouds puff, the salon blooms */
       cards.forEach(function (card) {
+        var g = card.getAttribute("data-gather");
+        var isCloud = (g === "0" || g === "1");
+        var animCls = isCloud ? "cloud-puff" : "salon-bloom";
+
         card.addEventListener("click", function (ev) {
-          if (card.classList.contains("park-bounce")) return;
-          card.classList.add("park-bounce");
+          if (card.classList.contains(animCls)) return;
+          card.classList.add(animCls);
           card.addEventListener("animationend", function h(e) {
             if (e.target !== card) return;
-            card.classList.remove("park-bounce");
+            card.classList.remove(animCls);
             card.removeEventListener("animationend", h);
           });
 
@@ -5299,19 +5604,33 @@
           }
           for (var b = 0; b < 8; b++) {
             (function () {
-              var l = leaf(true);
-              l.style.left = cx.toFixed(0) + "px";
-              l.style.top = cy.toFixed(0) + "px";
-              l.style.setProperty(
+              var p;
+              if (isCloud) {
+                p = document.createElement("span");
+                p.className = "puff-burst";
+                p.setAttribute("aria-hidden", "true");
+                var sz = 14 + Math.random() * 22;
+                p.style.width = p.style.height = sz.toFixed(0) + "px";
+              } else {
+                p = document.createElement("span");
+                p.className = "works-burst";
+                p.setAttribute("aria-hidden", "true");
+                p.textContent = "\u2726";
+                p.style.fontSize = (10 + Math.random() * 12).toFixed(0) + "px";
+                p.style.color = "#e8c76a";
+              }
+              p.style.left = cx.toFixed(0) + "px";
+              p.style.top = cy.toFixed(0) + "px";
+              p.style.setProperty(
                 "--bx",
                 (Math.random() * 150 - 75).toFixed(0) + "px"
               );
-              l.style.setProperty(
+              p.style.setProperty(
                 "--by",
                 (-40 - Math.random() * 110).toFixed(0) + "px"
               );
-              section.appendChild(l);
-              setTimeout(function () { l.remove(); }, 1100);
+              section.appendChild(p);
+              setTimeout(function () { p.remove(); }, 1100);
             })();
           }
         });
@@ -5366,6 +5685,117 @@
       } else {
         box.classList.add("open");
       }
+
+    })();
+
+
+    /* -----------------------------------------------
+       ARCHIVE: the disco — mirror ball, flashing
+       lights, rows that light up
+       ----------------------------------------------- */
+
+    (function () {
+
+      var section = document.getElementById("archive");
+      if (!section) return;
+
+      var glowColors = ["#89b8d8", "#b9a3e3", "#f0a3c3", "#e8c76a", "#93cfa0"];
+
+      /* Flashing colored lights, staggered like a light rig */
+      for (var i = 0; i < 5; i++) {
+        var g = document.createElement("span");
+        g.className = "disco-glow";
+        g.setAttribute("aria-hidden", "true");
+        var sz = 150 + Math.random() * 130;
+        g.style.width = g.style.height = sz.toFixed(0) + "px";
+        g.style.left = (Math.random() * 88).toFixed(2) + "%";
+        g.style.top = (8 + Math.random() * 80).toFixed(2) + "%";
+        g.style.background = glowColors[i % glowColors.length];
+        g.style.animationDuration = (3.6 + Math.random() * 2).toFixed(1) + "s";
+        g.style.animationDelay = (-i * 0.9).toFixed(1) + "s";
+        section.appendChild(g);
+      }
+
+      /* Mirror-ball spots scattered across the room */
+      for (var m = 0; m < 22; m++) {
+        var s = document.createElement("span");
+        s.className = "mirror-spot";
+        s.setAttribute("aria-hidden", "true");
+        var ss = 4 + Math.random() * 7;
+        s.style.width = s.style.height = ss.toFixed(0) + "px";
+        s.style.left = (Math.random() * 96).toFixed(2) + "%";
+        s.style.top = (5 + Math.random() * 90).toFixed(2) + "%";
+        s.style.setProperty(
+          "--dx", (Math.random() * 90 - 45).toFixed(0) + "px"
+        );
+        s.style.setProperty(
+          "--dy", (Math.random() * 70 - 35).toFixed(0) + "px"
+        );
+        s.style.animationDelay =
+          (-Math.random() * 8).toFixed(1) + "s, " +
+          (-Math.random() * 2.6).toFixed(1) + "s";
+        section.appendChild(s);
+      }
+
+      /* Tap the mirror ball: it spins fast, light bursts */
+      var ball = document.getElementById("discoBall");
+      if (ball) {
+        var secRect = null;
+        function burstAt(cx, cy) {
+          secRect = secRect || section.getBoundingClientRect();
+          for (var b = 0; b < 14; b++) {
+            (function () {
+              var p = document.createElement("span");
+              p.className = "mirror-burst";
+              p.setAttribute("aria-hidden", "true");
+              var ps = 5 + Math.random() * 9;
+              p.style.width = p.style.height = ps.toFixed(0) + "px";
+              p.style.left = cx.toFixed(0) + "px";
+              p.style.top = cy.toFixed(0) + "px";
+              p.style.setProperty(
+                "--bx", (Math.random() * 220 - 110).toFixed(0) + "px"
+              );
+              p.style.setProperty(
+                "--by", (Math.random() * 180 - 90).toFixed(0) + "px"
+              );
+              section.appendChild(p);
+              setTimeout(function () { p.remove(); }, 1100);
+            })();
+          }
+        }
+        function spin() {
+          if (ball.classList.contains("spin-fast")) return;
+          ball.classList.add("spin-fast");
+          var r = ball.getBoundingClientRect();
+          var sr = section.getBoundingClientRect();
+          burstAt(
+            r.left - sr.left + r.width / 2,
+            r.top - sr.top + r.height / 2
+          );
+          setTimeout(function () {
+            ball.classList.remove("spin-fast");
+          }, 1800);
+        }
+        ball.addEventListener("click", spin);
+        ball.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            spin();
+          }
+        });
+      }
+
+      /* Rows flash when tapped */
+      section.querySelectorAll(".archive-item").forEach(function (item) {
+        item.addEventListener("click", function () {
+          if (item.classList.contains("flash")) return;
+          item.classList.add("flash");
+          item.addEventListener("animationend", function h() {
+            item.classList.remove("flash");
+            item.removeEventListener("animationend", h);
+          });
+        });
+      });
 
     })();
 
