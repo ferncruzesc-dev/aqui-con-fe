@@ -1071,6 +1071,159 @@
       #works .project { transition: none; }
     }
 
+    /* ---- Community: a park under the oak tree ---- */
+    #community { position: relative; overflow: hidden; }
+    #community .container { position: relative; z-index: 2; }
+
+    /* Oak canopy across the top */
+    #community::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      left: -6%;
+      right: -6%;
+      height: 300px;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 170px 120px at 8% 55%, #557d4b 62%, transparent 63%),
+        radial-gradient(ellipse 200px 140px at 22% 38%, #6d9a5f 62%, transparent 63%),
+        radial-gradient(ellipse 150px 110px at 38% 58%, #5d8a52 62%, transparent 63%),
+        radial-gradient(ellipse 220px 150px at 55% 35%, #7da86b 62%, transparent 63%),
+        radial-gradient(ellipse 160px 115px at 72% 55%, #557d4b 62%, transparent 63%),
+        radial-gradient(ellipse 190px 130px at 88% 40%, #6d9a5f 62%, transparent 63%),
+        radial-gradient(ellipse 140px 100px at 96% 60%, #5d8a52 62%, transparent 63%);
+      opacity: 0.92;
+      transform-origin: top center;
+      animation: canopySway 9s ease-in-out infinite alternate;
+    }
+    @keyframes canopySway {
+      from { transform: rotate(-1.1deg) translateX(-10px); }
+      to { transform: rotate(1.1deg) translateX(10px); }
+    }
+
+    /* Grass along the bottom */
+    #community::after {
+      content: "";
+      position: absolute;
+      left: -4%;
+      right: -4%;
+      bottom: -30px;
+      height: 170px;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: 50% 50% 0 0 / 36px 36px 0 0;
+      background:
+        repeating-linear-gradient(90deg,
+          transparent 0 12px,
+          rgba(60, 95, 50, 0.28) 12px 14px,
+          transparent 14px 26px),
+        linear-gradient(180deg, #93b876 0%, #6d9a5f 55%, #557d4b 100%);
+    }
+
+    /* Dappled sunlight through the leaves */
+    .park-light {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 250, 220, 0.55), transparent 70%);
+      filter: blur(8px);
+      pointer-events: none;
+      z-index: 1;
+      animation: lightDrift 11s ease-in-out infinite alternate;
+    }
+    @keyframes lightDrift {
+      from { transform: translate(0, 0) scale(1); opacity: 0.45; }
+      to { transform: translate(46px, 28px) scale(1.18); opacity: 0.8; }
+    }
+
+    /* Falling oak leaves */
+    .oak-leaf {
+      position: absolute;
+      top: -30px;
+      width: 15px;
+      height: 21px;
+      background: var(--leaf, #7da86b);
+      border-radius: 100% 6% 100% 6%;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      animation-name: leafFall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .oak-leaf::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 2px;
+      bottom: 2px;
+      width: 1px;
+      background: rgba(60, 80, 50, 0.4);
+    }
+    @keyframes leafFall {
+      0% { transform: translate3d(0, -30px, 0) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.95; }
+      50% { transform: translate3d(var(--sway, 46px), 330px, 0) rotate(210deg); opacity: 0.85; }
+      88% { opacity: 0.6; }
+      100% { transform: translate3d(calc(var(--sway, 46px) * -0.4), 660px, 0) rotate(400deg); opacity: 0; }
+    }
+    /* Leaves burst from a gathering when touched */
+    .oak-burst {
+      position: absolute;
+      width: 13px;
+      height: 18px;
+      background: var(--leaf, #7da86b);
+      border-radius: 100% 6% 100% 6%;
+      pointer-events: none;
+      z-index: 6;
+      animation: leafBurst 1s ease-out forwards;
+    }
+    @keyframes leafBurst {
+      from { transform: translate(0, 0) rotate(0deg) scale(0.6); opacity: 1; }
+      to { transform: translate(var(--bx, 30px), var(--by, -70px)) rotate(260deg) scale(1.1); opacity: 0; }
+    }
+
+    /* Gathering cards: picnic blankets on the grass */
+    #community .project {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.3, 1),
+                  box-shadow 0.5s ease;
+    }
+    #community .project:hover {
+      transform: translateY(-8px) rotate(-0.5deg);
+      box-shadow: 0 26px 46px -20px rgba(70, 100, 60, 0.5);
+      z-index: 3;
+    }
+    #community .project.park-bounce {
+      animation: parkBounce 0.85s cubic-bezier(0.3, 0.7, 0.3, 1);
+      z-index: 4;
+    }
+    @keyframes parkBounce {
+      0% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-20px) scale(1.02); }
+      55% { transform: translateY(0) scale(0.99); }
+      75% { transform: translateY(-9px) scale(1.01); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    /* Gatherings fade in as you arrive */
+    #community .project.pre-reveal {
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    #community .project.pre-reveal.in-view {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .oak-leaf, .oak-burst, .park-light { display: none; }
+      #community::before, #community::after { animation: none; }
+      #community .project.pre-reveal { opacity: 1; transition: none; }
+      #community .project.park-bounce { animation: none; }
+      #community .project { transition: none; }
+    }
+
     .room-content .omg-creed {
       font-style: italic;
     }
@@ -4771,6 +4924,145 @@
               s.style.animationDelay = (Math.random() * 0.12).toFixed(2) + "s";
               section.appendChild(s);
               setTimeout(function () { s.remove(); }, 1200);
+            })();
+          }
+        });
+      });
+
+    })();
+
+
+    /* -----------------------------------------------
+       COMMUNITY: a park under the oak tree — falling
+       leaves, dappled light, gatherings that bounce
+       ----------------------------------------------- */
+
+    (function () {
+
+      var section = document.getElementById("community");
+      if (!section) return;
+
+      var leafColors = ["#7da86b", "#93b876", "#6d9a5f", "#c9a94e", "#a8bf6a"];
+
+      function leaf(burst) {
+        var l = document.createElement("span");
+        l.className = burst ? "oak-burst" : "oak-leaf";
+        l.setAttribute("aria-hidden", "true");
+        l.style.setProperty(
+          "--leaf",
+          leafColors[Math.floor(Math.random() * leafColors.length)]
+        );
+        return l;
+      }
+
+      /* Leaves drifting down through the park */
+      for (var i = 0; i < 14; i++) {
+        var lf = leaf(false);
+        lf.style.left = (Math.random() * 100).toFixed(2) + "%";
+        lf.style.top = (Math.random() * 30).toFixed(2) + "%";
+        var sc = (0.7 + Math.random() * 0.8).toFixed(2);
+        lf.style.width = (15 * sc).toFixed(0) + "px";
+        lf.style.height = (21 * sc).toFixed(0) + "px";
+        lf.style.setProperty(
+          "--sway",
+          (Math.random() * 90 - 45).toFixed(0) + "px"
+        );
+        lf.style.animationDuration =
+          (7 + Math.random() * 7).toFixed(1) + "s";
+        lf.style.animationDelay =
+          (-Math.random() * 12).toFixed(1) + "s";
+        section.appendChild(lf);
+      }
+
+      /* Dappled sunlight */
+      for (var d = 0; d < 8; d++) {
+        var pl = document.createElement("span");
+        pl.className = "park-light";
+        pl.setAttribute("aria-hidden", "true");
+        var sz = 60 + Math.random() * 110;
+        pl.style.width = pl.style.height = sz.toFixed(0) + "px";
+        pl.style.left = (Math.random() * 92).toFixed(2) + "%";
+        pl.style.top = (25 + Math.random() * 60).toFixed(2) + "%";
+        pl.style.animationDuration =
+          (8 + Math.random() * 7).toFixed(1) + "s";
+        pl.style.animationDelay =
+          (-Math.random() * 10).toFixed(1) + "s";
+        section.appendChild(pl);
+      }
+
+      /* Gatherings fade in as you arrive */
+      var cards = section.querySelectorAll(".project");
+      cards.forEach(function (c) { c.classList.add("pre-reveal"); });
+
+      function settle(el) {
+        setTimeout(function () {
+          el.classList.remove("pre-reveal", "in-view");
+        }, 1200);
+      }
+
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                var el = e.target;
+                el.classList.add("in-view");
+                io.unobserve(el);
+                settle(el);
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+        cards.forEach(function (c, i) {
+          c.style.transitionDelay = (i * 110) + "ms";
+          io.observe(c);
+        });
+        /* clear the stagger delay after reveal so hovers stay snappy */
+        setTimeout(function () {
+          cards.forEach(function (c) { c.style.transitionDelay = ""; });
+        }, 2500);
+      } else {
+        cards.forEach(function (c) {
+          c.classList.add("in-view");
+          settle(c);
+        });
+      }
+
+      /* Touch a gathering: it bounces, leaves burst */
+      cards.forEach(function (card) {
+        card.addEventListener("click", function (ev) {
+          if (card.classList.contains("park-bounce")) return;
+          card.classList.add("park-bounce");
+          card.addEventListener("animationend", function h(e) {
+            if (e.target !== card) return;
+            card.classList.remove("park-bounce");
+            card.removeEventListener("animationend", h);
+          });
+
+          var secRect = section.getBoundingClientRect();
+          var rect = card.getBoundingClientRect();
+          var cx = ev.clientX - secRect.left;
+          var cy = ev.clientY - secRect.top;
+          if (!cx || !cy) {
+            cx = rect.left - secRect.left + rect.width / 2;
+            cy = rect.top - secRect.top + 50;
+          }
+          for (var b = 0; b < 8; b++) {
+            (function () {
+              var l = leaf(true);
+              l.style.left = cx.toFixed(0) + "px";
+              l.style.top = cy.toFixed(0) + "px";
+              l.style.setProperty(
+                "--bx",
+                (Math.random() * 150 - 75).toFixed(0) + "px"
+              );
+              l.style.setProperty(
+                "--by",
+                (-40 - Math.random() * 110).toFixed(0) + "px"
+              );
+              section.appendChild(l);
+              setTimeout(function () { l.remove(); }, 1100);
             })();
           }
         });
