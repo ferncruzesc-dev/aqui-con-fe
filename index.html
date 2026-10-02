@@ -3138,7 +3138,37 @@
       .room-10 .room-content > p { flex: 1 1 auto; }
       .room-05 .room-content, .room-09 .room-content, .room-11 .room-content { padding: 32px 26px 36px; }
     }
-  </style>
+  
+    /* --- HA monogram: hero centerpiece + footer sign-off --- */
+    .hero-monogram {
+      display: block;
+      width: clamp(200px, 30vw, 300px);
+      height: auto;
+      margin: 0 auto 36px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 18px 30px rgba(91, 135, 173, 0.25));
+      animation: monogram-float 7s ease-in-out infinite;
+    }
+    .footer-signoff {
+      margin: 60px auto 0;
+      text-align: center;
+    }
+    .footer-signoff-logo {
+      width: clamp(260px, 36vw, 420px);
+      height: auto;
+      filter: drop-shadow(0 22px 34px rgba(91, 135, 173, 0.28));
+      animation: monogram-float 7s ease-in-out infinite;
+    }
+    @keyframes monogram-float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-9px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-monogram, .footer-signoff-logo { animation: none; }
+    }
+
+    </style>
     <link rel="icon" type="image/png" href="assets/img/hojita-ha-monogram.png">
     <link rel="apple-touch-icon" href="assets/img/hojita-ha-monogram.png">
 </head>
@@ -3208,6 +3238,8 @@
 
 
       <div class="hero-content">
+
+        <img class="hero-monogram" src="assets/img/hojita-ha-monogram-water.png" alt="Hojita de Agua monogram">
 
         <div class="hero-small">
           Scholarship · Faith · Presence · Art · Community · Memory
@@ -5347,6 +5379,10 @@
           made with presence
         </span>
 
+      </div>
+
+      <div class="footer-signoff">
+        <img class="footer-signoff-logo" src="assets/img/hojita-ha-monogram-water.png" alt="Hojita de Agua monogram">
       </div>
 
     </div>
