@@ -3168,6 +3168,15 @@
       .hero-monogram, .footer-signoff-logo { animation: none; }
     }
 
+    
+    /* --- Journal: composition notebook cover colors --- */
+    #journal .project.notebook.nb-blue .nb-front { background-color: #2b4d8f; }
+    #journal .project.notebook.nb-blue .nb-front::before { background: linear-gradient(90deg, #1a2f5c, #234078); }
+    #journal .project.notebook.nb-green .nb-front { background-color: #2e7d4f; }
+    #journal .project.notebook.nb-green .nb-front::before { background: linear-gradient(90deg, #1c4f30, #265f3c); }
+    #journal .project.notebook.nb-red .nb-front { background-color: #b03a2e; }
+    #journal .project.notebook.nb-red .nb-front::before { background: linear-gradient(90deg, #6b221b, #872b22); }
+
     </style>
     <link rel="icon" type="image/png" href="assets/img/hojita-ha-monogram.png">
     <link rel="apple-touch-icon" href="assets/img/hojita-ha-monogram.png">
@@ -5061,7 +5070,7 @@
         <div class="project-grid">
 
 
-          <article class="project notebook" data-notebook role="button" tabindex="0"
+          <article class="project notebook nb-blue" data-notebook role="button" tabindex="0"
                    aria-label="This month's entry — tap to open the notebook">
 
             <div class="nb-inner">
@@ -5103,7 +5112,7 @@
           </article>
 
 
-          <article class="project notebook" data-notebook role="button" tabindex="0"
+          <article class="project notebook nb-green" data-notebook role="button" tabindex="0"
                    aria-label="A scholarly journal — tap to open the notebook">
 
             <div class="nb-inner">
@@ -5145,7 +5154,7 @@
           </article>
 
 
-          <article class="project notebook" data-notebook role="button" tabindex="0"
+          <article class="project notebook nb-red" data-notebook role="button" tabindex="0"
                    aria-label="The ongoing journal — tap to open the notebook">
 
             <div class="nb-inner">
