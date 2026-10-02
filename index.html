@@ -432,7 +432,6 @@
     #serial .section-label { color: var(--blue-deep); }
     #community .section-label { color: var(--green-deep); }
     #works .section-label { color: var(--purple-deep); }
-    #studio .section-label { color: var(--blue-deep); }
     #archive .section-label { color: var(--green-deep); }
     #newsletter .section-label { color: var(--purple-deep); }
     #journal .section-label { color: var(--blue-deep); }
@@ -1304,12 +1303,42 @@
     #serial     { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
     #community  { background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
     #works      { background: linear-gradient(180deg, rgba(147,207,160,.14), rgba(147,207,160,0) 62%); }
-    #studio     { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
     #archive    { background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
     #newsletter { background: linear-gradient(180deg, rgba(147,207,160,.14), rgba(147,207,160,0) 62%); }
     #journal    { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
     #voice      { background: linear-gradient(180deg, rgba(185,163,227,.16), rgba(185,163,227,0) 62%); }
     #participate{ background: linear-gradient(180deg, rgba(137,184,216,.14), rgba(137,184,216,0) 62%); }
+
+    /* ---- Works subgroups: color-forward subheads ---- */
+    .works-subhead {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      text-align: center;
+      margin: 70px 0 4px;
+    }
+    .works-subhead-published { color: var(--purple-deep); }
+    .works-subhead-studio { color: var(--blue-deep); }
+    .works-subhead::after {
+      content: "";
+      display: block;
+      width: 64px;
+      height: 4px;
+      border-radius: 2px;
+      margin: 14px auto 0;
+    }
+    .works-subhead-published::after { background: linear-gradient(90deg, var(--purple), var(--blue)); }
+    .works-subhead-studio::after { background: linear-gradient(90deg, var(--blue), var(--green)); }
+    .works-subintro {
+      font-family: var(--serif);
+      font-size: 21px;
+      line-height: 1.5;
+      text-align: center;
+      max-width: 660px;
+      margin: 0 auto 36px;
+      color: var(--muted);
+    }
 
     /* ---- Project cards: colored crown borders ---- */
     .project { border-top: 4px solid transparent; }
@@ -1631,7 +1660,6 @@
         <a href="#serial">Serial</a>
         <a href="#community">Community</a>
         <a href="#works">Works</a>
-        <a href="#studio">Studio</a>
         <a href="#archive">Archive</a>
         <a href="#newsletter">Newsletter</a>
         <a href="#journal">Journal</a>
@@ -2795,7 +2823,7 @@
       <div class="container">
 
         <div class="section-label">
-          07 / Works
+          07 / Works & Studio
         </div>
 
         <img src="assets/img/hojita-ha-monogram.png" alt="Hojita de Agua" class="section-seal">
@@ -2805,9 +2833,15 @@
         </h2>
 
         <p class="intro">
-          Published works by Fer — novels, stories, poems, essays.
+          Published works by Fer — novels, stories, poems, essays —
+          and the Studio where they are made.
           New pieces appear here as they are released.
         </p>
+
+
+        <h3 class="works-subhead works-subhead-published">
+          Published works
+        </h3>
 
 
         <div class="project-grid">
@@ -2974,29 +3008,12 @@
 
         </div>
 
-      </div>
 
-    </section>
-
-
-    <!-- =====================================================
-         STUDIO
-         ===================================================== -->
-
-
-    <section id="studio">
-
-      <div class="container">
-
-        <div class="section-label">
-          08 / Studio
-        </div>
-
-        <h2 class="section-title">
+        <h3 class="works-subhead works-subhead-studio">
           Things in progress.
-        </h2>
+        </h3>
 
-        <p class="intro">
+        <p class="works-subintro">
           Creative and scholarly work can take its time.
           These projects live somewhere between research,
           imagination, memory, and story.
@@ -3006,7 +3023,7 @@
         <div class="project-grid">
 
 
-          <!-- PROJECT THREE -->
+<!-- PROJECT THREE -->
 
           <article class="project">
 
@@ -3087,6 +3104,9 @@
     </section>
 
 
+    
+
+
     <!-- =====================================================
          ARCHIVE
          ===================================================== -->
@@ -3097,7 +3117,7 @@
       <div class="container">
 
         <div class="section-label">
-          09 / Archive
+          08 / Archive
         </div>
 
         <h2 class="section-title">
@@ -3249,7 +3269,7 @@
       <div class="container">
 
         <div class="section-label">
-          10 / Newsletter
+          09 / Newsletter
         </div>
 
         <h2 class="section-title">
@@ -3291,7 +3311,7 @@
       <div class="container">
 
         <div class="section-label">
-          11 / Journal
+          10 / Journal
         </div>
 
         <h2 class="section-title">
@@ -3434,7 +3454,7 @@
       <div class="container">
 
         <div class="section-label">
-          12 / Voice
+          11 / Voice
         </div>
 
         <h2 class="section-title">
@@ -3470,7 +3490,7 @@
       <div class="container">
 
         <div class="section-label">
-          13 / Participate
+          12 / Participate
         </div>
 
         <h2 class="section-title">
@@ -3579,10 +3599,6 @@
 
             <a href="#works">
               Works
-            </a>
-
-            <a href="#studio">
-              Studio
             </a>
 
             <a href="#archive">
