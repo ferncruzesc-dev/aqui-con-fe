@@ -680,18 +680,114 @@
       font-style: italic;
     }
 
-    .envivo-feed {
-      margin-top: 45px;
-      max-width: 850px;
-    }
+    /* ---- En Vivo headline ticker ---- */
 
-    .envivo-entry {
-      padding: 26px 0;
+    .envivo-ticker-wrap {
+      position: relative;
+      margin-top: 70px;
       border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(137, 184, 216, 0.10), rgba(185, 163, 227, 0.10));
     }
 
-    .envivo-entry:last-child {
-      border-bottom: 1px solid var(--line);
+    .envivo-live {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 9px 18px;
+      border-radius: 999px;
+      z-index: 2;
+    }
+
+    .live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e5484d;
+      animation: live-pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes live-pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.4;
+        transform: scale(0.75);
+      }
+    }
+
+    .envivo-ticker {
+      overflow: hidden;
+      padding: 42px 0;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+
+    .envivo-ticker-track {
+      display: flex;
+      width: max-content;
+      animation: envivo-scroll 85s linear infinite;
+    }
+
+    .envivo-ticker:hover .envivo-ticker-track,
+    .envivo-ticker:focus-within .envivo-ticker-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes envivo-scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .envivo-ticker-set {
+      display: flex;
+    }
+
+    .envivo-headline {
+      flex: none;
+      width: 380px;
+      padding: 6px 46px;
+      border-right: 1px solid var(--line);
+    }
+
+    .envivo-headline .envivo-date {
+      margin-bottom: 10px;
+    }
+
+    .envivo-headline p {
+      font-family: var(--serif);
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .envivo-headline a {
+      border-bottom: 1px solid var(--accent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .envivo-ticker-track {
+        animation: none;
+      }
+      .live-dot {
+        animation: none;
+      }
     }
 
     .envivo-date {
@@ -702,37 +798,6 @@
       text-transform: uppercase;
       color: var(--accent-dark);
       margin-bottom: 12px;
-    }
-
-    .envivo-entry p {
-      font-family: var(--serif);
-      font-size: 23px;
-      line-height: 1.5;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .envivo-subsection {
-      margin-top: 40px;
-      padding-top: 32px;
-      border-top: 1px solid var(--line);
-      max-width: 850px;
-    }
-
-    .envivo-subhead {
-      font-family: var(--serif);
-      font-size: 32px;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      margin: 0 0 14px 0;
-    }
-
-    .envivo-subsection p {
-      font-family: var(--serif);
-      font-size: 20px;
-      line-height: 1.5;
-      color: var(--muted);
-      margin: 0;
     }
 
     .subscribe-box {
@@ -1214,8 +1279,13 @@
         gap: 6px;
       }
 
-      .envivo-entry p {
-        font-size: 20px;
+      .envivo-headline {
+        width: 300px;
+        padding: 6px 30px;
+      }
+
+      .envivo-headline p {
+        font-size: 19px;
       }
 
       .room-directory {
@@ -1773,63 +1843,123 @@
           new pieces, new rooms, and new questions, as they happen.
         </p>
 
-        <div class="envivo-feed">
+      </div>
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Oct 2, 2026</span>
-            <p>
-              “2 + 2 is you,” a new poem by F. Cruz Escalante, is now
-              published — the second piece in Poesia de Fe.
-              <a href="2-plus-2-is-you.html">Read it here →</a>
-            </p>
-          </article>
+      <div class="envivo-ticker-wrap">
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Oct 1, 2026</span>
-            <p>
-              “The Green Clock,” a new poem by F. Cruz Escalante, is now
-              published — the first piece in Poesia de Fe.
-              <a href="the-green-clock.html">Read it here →</a>
-            </p>
-          </article>
+        <div class="envivo-live" aria-hidden="true">
+          <span class="live-dot"></span>
+          <span>Live</span>
+        </div>
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Oct 1, 2026</span>
-            <p>
-              The Works shelf has new words: revised copy for
-              No Shave November and a new synopsis for
-              The Curse of the Pearls.
-            </p>
-          </article>
+        <div class="envivo-ticker" role="marquee" aria-label="Latest updates from aQui con fe">
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Oct 1, 2026</span>
-            <p>
-              A new section, ¡aQui! con …, gathers OMG! moments,
-              the aQui con fe Visual Diary, and coMe for Me.
-            </p>
-          </article>
+          <div class="envivo-ticker-track">
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Sep 30, 2026</span>
-            <p>
-              The aQui con fe Studio went live — a private constellation
-              for questions, projects, and rooms, with a public face
-              for the world to read.
-            </p>
-          </article>
+            <div class="envivo-ticker-set">
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 2, 2026</span>
+              <p>
+                “2 + 2 is you,” a new poem by F. Cruz Escalante, is now
+                published — the second piece in Poesia de Fe.
+                <a href="2-plus-2-is-you.html">Read it here →</a>
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                “The Green Clock,” a new poem by F. Cruz Escalante, is now
+                published — the first piece in Poesia de Fe.
+                <a href="the-green-clock.html">Read it here →</a>
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                The Works shelf has new words: revised copy for
+                No Shave November and a new synopsis for
+                The Curse of the Pearls.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                A new section, ¡aQui! con …, gathers OMG! moments,
+                the aQui con fe Visual Diary, and coMe for Me.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Sep 30, 2026</span>
+              <p>
+                The aQui con fe Studio went live — a private constellation
+                for questions, projects, and rooms, with a public face
+                for the world to read.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Sep 30, 2026</span>
+              <p>
+                aquiconfe.org launched: a living space for scholarship,
+                faith, music, literature, and memory.
+              </p>
+            </article>
+            </div>
 
-          <article class="envivo-entry">
-            <span class="envivo-date">Sep 30, 2026</span>
-            <p>
-              aquiconfe.org launched: a living space for scholarship,
-              faith, music, literature, and memory.
-            </p>
-          </article>
+            <div class="envivo-ticker-set" aria-hidden="true">
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 2, 2026</span>
+              <p>
+                “2 + 2 is you,” a new poem by F. Cruz Escalante, is now
+                published — the second piece in Poesia de Fe.
+                <a href="2-plus-2-is-you.html">Read it here →</a>
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                “The Green Clock,” a new poem by F. Cruz Escalante, is now
+                published — the first piece in Poesia de Fe.
+                <a href="the-green-clock.html">Read it here →</a>
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                The Works shelf has new words: revised copy for
+                No Shave November and a new synopsis for
+                The Curse of the Pearls.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Oct 1, 2026</span>
+              <p>
+                A new section, ¡aQui! con …, gathers OMG! moments,
+                the aQui con fe Visual Diary, and coMe for Me.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Sep 30, 2026</span>
+              <p>
+                The aQui con fe Studio went live — a private constellation
+                for questions, projects, and rooms, with a public face
+                for the world to read.
+              </p>
+            </article>
+            <article class="envivo-headline">
+              <span class="envivo-date">Sep 30, 2026</span>
+              <p>
+                aquiconfe.org launched: a living space for scholarship,
+                faith, music, literature, and memory.
+              </p>
+            </article>
+            </div>
+
+          </div>
 
         </div>
 
       </div>
+
 
     </section>
 
