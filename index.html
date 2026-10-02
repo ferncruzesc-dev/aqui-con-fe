@@ -1876,6 +1876,160 @@
       .wind-streak, .wind-letter-wrap, .debris { display: none; }
     }
 
+    /* ---- Journal: composition notebooks that fold open ---- */
+    #journal .project.notebook {
+      background: none;
+      padding: 0;
+      display: block;
+      min-height: 440px;
+      perspective: 1500px;
+      cursor: pointer;
+    }
+    #journal .project.notebook:focus-visible {
+      outline: 3px solid rgba(137, 184, 216, 0.8);
+      outline-offset: 6px;
+    }
+    .nb-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      transform-style: preserve-3d;
+      transform-origin: center bottom;
+    }
+    #journal .project.notebook:not(.open) .nb-inner {
+      animation: nbRock 7s ease-in-out infinite;
+    }
+    @keyframes nbRock {
+      0%, 100% { transform: rotate(-1deg); }
+      50% { transform: rotate(1deg); }
+    }
+
+    /* Lined pages inside */
+    .nb-pages {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(#fffdf6 0 30px, #e9e3d1 30px 31px);
+      border: 1px solid #ddd6c2;
+      border-radius: 4px 10px 10px 4px;
+      padding: 34px 30px 30px 46px;
+      box-shadow: inset 0 0 46px rgba(150, 130, 90, 0.14);
+    }
+    .nb-pages::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 34px;
+      width: 2px;
+      background: rgba(220, 120, 120, 0.45);
+    }
+    .nb-pages::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      bottom: 5px;
+      right: 0;
+      width: 9px;
+      background: repeating-linear-gradient(90deg, #fffdf6 0 2px, #e2dcc8 2px 3px);
+      border-radius: 0 8px 8px 0;
+    }
+    #journal .nb-pages .project-label { color: var(--muted); }
+    #journal .nb-pages h3 {
+      font-size: 30px;
+      line-height: 1.15;
+      margin: 12px 0 14px;
+      font-weight: 400;
+    }
+    #journal .nb-pages p { font-size: 13px; line-height: 31px; }
+    #journal .nb-pages .project-link { margin-top: 18px; }
+
+    /* The cover that folds open */
+    .nb-cover {
+      position: absolute;
+      inset: 0;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 1.1s cubic-bezier(0.3, 0.7, 0.3, 1);
+    }
+    #journal .project.notebook.open .nb-cover {
+      transform: rotateY(-158deg);
+    }
+    .nb-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 4px 12px 12px 4px;
+      overflow: hidden;
+    }
+    .nb-front {
+      background-color: #232326;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240"><filter id="m"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.28 0"/></filter><rect width="240" height="240" filter="url(%23m)"/></svg>');
+      box-shadow:
+        inset 0 0 60px rgba(0, 0, 0, 0.55),
+        8px 14px 30px -12px rgba(40, 40, 50, 0.55);
+    }
+    .nb-front::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      background: linear-gradient(90deg, #101012, #1b1b1f);
+      border-right: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 4px 0 0 4px;
+    }
+    .nb-back {
+      transform: rotateY(180deg);
+      background: #f4efe2;
+      box-shadow: inset 0 0 40px rgba(150, 130, 90, 0.2);
+    }
+    .nb-label {
+      position: absolute;
+      top: 44%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 66%;
+      background: #f6f1e3;
+      border: 1px solid #c9c2ae;
+      box-shadow: inset 0 0 0 4px #f6f1e3, inset 0 0 0 5px #b9b29c;
+      padding: 24px 18px;
+      text-align: center;
+    }
+    .nb-label-kicker {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #8a8474;
+      margin-bottom: 10px;
+    }
+    .nb-label strong {
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      color: #2a2a2e;
+      line-height: 1.2;
+    }
+    .nb-hint {
+      position: absolute;
+      bottom: 26px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.55);
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #journal .project.notebook:not(.open) .nb-inner { animation: none; }
+      .nb-cover { transition: none; }
+    }
+
     .room-content .omg-creed {
       font-style: italic;
     }
@@ -4875,27 +5029,43 @@
         <div class="project-grid">
 
 
-          <article class="project">
+          <article class="project notebook" data-notebook role="button" tabindex="0"
+                   aria-label="This month's entry — tap to open the notebook">
 
-            <div>
+            <div class="nb-inner">
 
-              <div class="project-label">
-                Journal / 01
+              <div class="nb-pages">
+
+                <div class="project-label">
+                  Journal / 01
+                </div>
+
+                <h3>
+                  This month's entry
+                </h3>
+
+                <p>
+                  My own published journal entry for the month.
+                  The first entry is forthcoming.
+                </p>
+
+                <div class="project-link">
+                  First entry coming soon →
+                </div>
+
               </div>
 
-              <h3>
-                This month's entry
-              </h3>
+              <div class="nb-cover">
+                <div class="nb-face nb-front">
+                  <div class="nb-label">
+                    <span class="nb-label-kicker">Journal / 01</span>
+                    <strong>This month's entry</strong>
+                  </div>
+                  <div class="nb-hint">Tap to open</div>
+                </div>
+                <div class="nb-face nb-back"></div>
+              </div>
 
-              <p>
-                My own published journal entry for the month.
-                The first entry is forthcoming.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              First entry coming soon →
             </div>
 
           </article>
@@ -4927,28 +5097,44 @@
           </article>
 
 
-          <article class="project">
+          <article class="project notebook" data-notebook role="button" tabindex="0"
+                   aria-label="The ongoing journal — tap to open the notebook">
 
-            <div>
+            <div class="nb-inner">
 
-              <div class="project-label">
-                Journal / 03
+              <div class="nb-pages">
+
+                <div class="project-label">
+                  Journal / 03
+                </div>
+
+                <h3>
+                  The ongoing journal
+                </h3>
+
+                <p>
+                  Ideas, observations, questions, discoveries,
+                  reading notes, cultural reflections, and
+                  unfinished thoughts — kept live.
+                </p>
+
+                <div class="project-link">
+                  Ongoing — opening soon →
+                </div>
+
               </div>
 
-              <h3>
-                The ongoing journal
-              </h3>
+              <div class="nb-cover">
+                <div class="nb-face nb-front">
+                  <div class="nb-label">
+                    <span class="nb-label-kicker">Journal / 03</span>
+                    <strong>The ongoing journal</strong>
+                  </div>
+                  <div class="nb-hint">Tap to open</div>
+                </div>
+                <div class="nb-face nb-back"></div>
+              </div>
 
-              <p>
-                Ideas, observations, questions, discoveries,
-                reading notes, cultural reflections, and
-                unfinished thoughts — kept live.
-              </p>
-
-            </div>
-
-            <div class="project-link">
-              Ongoing — opening soon →
             </div>
 
           </article>
@@ -6068,6 +6254,28 @@
           }
         });
       }
+
+    })();
+
+
+    /* -----------------------------------------------
+       JOURNAL: composition notebooks that fold open
+       ----------------------------------------------- */
+
+    (function () {
+
+      document.querySelectorAll("[data-notebook]").forEach(function (nb) {
+        function toggle() {
+          nb.classList.toggle("open");
+        }
+        nb.addEventListener("click", toggle);
+        nb.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      });
 
     })();
 
