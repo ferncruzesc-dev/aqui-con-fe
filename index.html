@@ -3222,8 +3222,35 @@
     #journal .project.notebook.nb-blue .nb-front::before { background: linear-gradient(90deg, #1a2f5c, #234078); }
     #journal .project.notebook.nb-green .nb-front { background-color: #2e7d4f; }
     #journal .project.notebook.nb-green .nb-front::before { background: linear-gradient(90deg, #1c4f30, #265f3c); }
+    
     #journal .project.notebook.nb-red .nb-front { background-color: #b03a2e; }
+    
     #journal .project.notebook.nb-red .nb-front::before { background: linear-gradient(90deg, #6b221b, #872b22); }
+    /* ---- Site footer sign-off ---- */
+.signoff-footer {
+  margin: 48px auto 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  text-align: center;
+}
+.signoff-footer-leaf {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+.signoff-footer-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(17px, 2.2vw, 21px);
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
 
 
     /* =====================================================
@@ -5656,8 +5683,12 @@
           made with presence
         </span>
 
+        
       </div>
-
+      <div class="signoff-footer">
+        <img class="signoff-footer-leaf" src="assets/img/hojita-enso-logo.png" alt="Hojita de Agua leaf mark">
+        <p class="signoff-footer-text">careful&hellip; or you&rsquo;ll end up in my novel.</p>
+      </div>
       <div class="footer-signoff">
         <img class="footer-signoff-logo" src="assets/img/hojita-ha-monogram-water.png" alt="Hojita de Agua monogram">
       </div>
