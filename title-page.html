@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A title page — aQui con fe</title>
+<meta name="description" content="A title page for aQui con fe — ¡aMa!">
+<style>
+  :root{
+    --ink:#2e3a52;
+    --muted:#6b7fa8;
+    --bg:#f7f4ec;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    font-family:var(--serif);
+    color:var(--ink);
+    background:var(--bg);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(640px 440px at 12% 18%, rgba(137,184,216,.30), transparent 62%),
+      radial-gradient(720px 520px at 88% 14%, rgba(185,163,227,.28), transparent 62%),
+      radial-gradient(700px 520px at 78% 90%, rgba(147,207,160,.28), transparent 62%),
+      radial-gradient(520px 400px at 6% 84%, rgba(137,184,216,.20), transparent 62%);
+  }
+  .badge{
+    position:absolute;
+    top:22px;
+    left:22px;
+    width:clamp(110px,11vw,168px);
+    height:auto;
+    transform:rotate(-6deg);
+    z-index:5;
+  }
+  .monogram{
+    position:absolute;
+    right:clamp(16px,4vw,72px);
+    top:50%;
+    transform:translateY(-50%);
+    width:clamp(260px,24vw,360px);
+    height:auto;
+    z-index:1;
+    filter:drop-shadow(0 18px 30px rgba(91,135,173,.25));
+  }
+  .center{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    max-width:min(680px,70vw);
+    padding:0 20px;
+  }
+  h1{
+    font-size:clamp(3rem,8vw,5.5rem);
+    font-weight:400;
+    letter-spacing:-.02em;
+    line-height:1.02;
+    background:linear-gradient(112deg,#6d9dc4 0%,#89b8d8 30%,#93cfa0 58%,#b9a3e3 85%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .tag{
+    margin-top:22px;
+    font-size:1.35rem;
+    font-style:italic;
+  }
+  .ama{
+    margin-top:8px;
+    font-size:1.1rem;
+    font-style:italic;
+    color:var(--muted);
+  }
+  .back{
+    position:absolute;
+    bottom:26px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:5;
+    font-size:.82rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:1px solid currentColor;
+    padding-bottom:2px;
+    white-space:nowrap;
+  }
+  .back:hover{color:var(--ink)}
+  @media (max-width:760px){
+    body{display:block;text-align:center;padding:88px 20px 110px}
+    .badge{width:96px;top:14px;left:14px}
+    .monogram{position:static;transform:none;width:210px;margin:0 auto 22px;display:block}
+    .center{max-width:none}
+    .back{bottom:18px}
+  }
+</style>
+</head>
+<body>
+  <img class="badge" src="assets/img/ama-chalk.png" alt="¡aMa! logo">
+  <img class="monogram" src="assets/img/hojita-ha-monogram-water.png" alt="site monogram">
+  <main class="center">
+    <h1>aQui con fe</h1>
+    <p class="tag">Here, with me.</p>
+    <p class="ama">¡aMa!</p>
+  </main>
+  <a class="back" href="about.html">← About</a>
+</body>
+</html>
